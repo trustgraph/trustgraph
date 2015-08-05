@@ -22,7 +22,7 @@
     "hubot-heroku-keepalive": "0.0.4",
     "hubot-scripts": "^2.16.1",
     "hubot-slack": "^3.3.0",
-    "hubot-suggest": "0.0.1",
+    "hubot-suggest": "*",
     "lightsaber": "^0.4.1",
     "lodash": "^3.10.0",
     "neo4j": "2.0.0-RC2"
