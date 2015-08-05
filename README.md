@@ -1,6 +1,6 @@
 # Trust Exchange
 
-Build: [![Circle CI](https://circleci.com/gh/citizencode/trust-exchange/tree/master.svg?style=svg&circle-token=3325117d44704bfa3b744b4980b3d659871aade1)](https://circleci.com/gh/citizencode/trust-exchange/tree/master)
+Build: [![Circle CI](https://circleci.com/gh/citizencode/trust-exchange/tree/master.svg?style=svg)](https://circleci.com/gh/citizencode/trust-exchange/tree/master)
 
 ## Local development
 
