@@ -15,11 +15,6 @@
     "test": "mocha"
   },
   "main": "src/index.coffee",
-  "devDependencies": {
-    "chai": "^3.2.0",
-    "coffee-script": "^1.9.3",
-    "mocha": "^2.2.5"
-  },
   "dependencies": {
     "hubot": "^2.13.2",
     "hubot-diagnostics": "0.0.1",
@@ -32,8 +27,17 @@
     "lodash": "^3.10.0",
     "neo4j": "2.0.0-RC2"
   },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "coffee-script": "^1.9.3",
+    "mocha": "^2.2.5"
+  },
   "engines": {
     "node": "^0.10",
     "npm": "2.x"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/citizencode/trust-exchange.git"
+  },
 }
