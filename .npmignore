@@ -1,3 +1,5 @@
+/.pairs
+
 npm-debug.log
 /.env
 /.hubot_history
