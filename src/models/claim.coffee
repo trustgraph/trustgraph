@@ -33,6 +33,4 @@ class Claim
       throw error if error
       callback results
 
-
-
 module.exports = Claim

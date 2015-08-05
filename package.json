@@ -14,6 +14,7 @@
     "start": "bin/hubot --adapter slack",
     "test": "mocha"
   },
+  "main": "src/index.coffee",
   "devDependencies": {
     "chai": "^3.2.0",
     "coffee-script": "^1.9.3",
@@ -32,6 +33,7 @@
     "neo4j": "2.0.0-RC2"
   },
   "engines": {
-    "node": "0.10.x"
+    "node": "^0.10",
+    "npm": "2.x"
   }
 }
