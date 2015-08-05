@@ -1,0 +1,12 @@
+deployment:
+  autodeploy:
+    branch: master
+    heroku:
+      appname: trust-exchange
+machine:
+  services:
+    - neo4j
+  post:
+    # Neo4J requires you to to change its password initially; changing it and then reverting:
+    - curl -vX POST http://neo4j:neo4j@localhost:7474/user/neo4j/password -d"password=neo4j2"
+    - curl -vX POST http://neo4j:neo4j2@localhost:7474/user/neo4j/password -d"password=neo4j"

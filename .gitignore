@@ -1,0 +1,5 @@
+npm-debug.log
+/.env
+/.hubot_history
+/node_modules/
+/tmp/
