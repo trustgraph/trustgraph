@@ -18,7 +18,6 @@ class Claim
       throw error if error
       callback results
 
-
   @putn: (props, callback) ->
     { source, target, rating } = props
     ratingParams = params plain: { rating, timestamp: 'timestamp()' }
