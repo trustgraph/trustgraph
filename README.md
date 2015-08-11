@@ -33,6 +33,20 @@ A _Trust Atom_ is a map of keys and values.  The only required keys are _source_
 - _Hash_ is a cryptographic hash of _canocial JSON_, which may be used as a content ID
 - _Signature_ is the result of cryptographically signing the _hash_ with the private key of the _source_ (that key which is paired with the _source_ pubic key)
 
+A concrete example, expressed in JSON:
+
+```json
+{
+  "source": "multihash-QmWdprFxhCWzjJ6D9Tw9tj5FyWFauhYuGtDQigVvwfteNv",
+  "target": "http://ipfs.io/",
+  "value": 0.99,
+  "description": "content addressable graph infrastructure",
+  "timestamp": "2015-08-11T22:32:23.207Z",
+  "signature":"7de52c8bd7ec15fa117dca2ca9d6e474746316508337856f0b2e42617670a113845c0f98c34b833869ae47757659fb7051cf13c38c3cd3cba40cb89735c6a48c",
+  "hash": "multihash-QmaGJwJRTrYGChugJrdzUqq7CxwsvNyYuhUPZFvxuJUgtM"
+}
+```
+
 Using the example above, the _canonical JSON_ would be:
 
 ```json
