@@ -8,7 +8,7 @@
     "Joel Dietz <joel.dietz@citizencode.io>",
     "Noah Thorp <noah@citizencode.io>"
   ],
-  "description": "Distributed trust graph (pre-alpha)",
+  "description": "Distributed trust graph toolkit (pre-alpha)",
   "scripts": {
     "dev": "bin/hubot",
     "start": "bin/hubot --adapter slack",
