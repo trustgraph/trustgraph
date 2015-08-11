@@ -31,7 +31,7 @@ A `Trust Atom` is a map of keys and values.  The only required keys are `source`
   - sorting the map by key
   - returning the minified resulting JSON
 - `Hash` is a cryptographic hash of `canocial JSON`, which may be used as a content ID
-- `Signature` is the result of cryptographically signing the `hash` with the private key of the `source` (that key which is paired with the `source` pubic key)
+- `Signature` is the result of cryptographically signing the `hash` with the private key of the `source` (that key which is paired with the `source` public key)
 
 A concrete example, expressed in JSON:
 
