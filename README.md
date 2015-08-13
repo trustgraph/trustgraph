@@ -9,9 +9,23 @@ Trust Exchange is:
 
 Trust Exchange is a very young codebase, so expect limited functionality, and don't use it in production just yet.
 
+## Protocol: Trust Atoms
+
 Trust Exchange is composed entirely of `Trust Atoms`, an intentionally open format which can naturally represent ratings and "vouches", as well as substantially more esoteric formats.
 
-A `Trust Atom` is a map of keys and values.  The only required keys are `source` and `target`; all others are optional.  Note that implementors may add other fields as desired -- we recommend starting custom field names with an underscore to avoid any  collisions in the future.
+A `Trust Atom` is a map of keys and values.  The only required keys are `source` and `target`; all others are optional.  Note that implementors may add other fields as needed -- we recommend starting custom field names with an underscore to avoid any naming collisions in the future.
+
+```
+{
+  source: <hash of public key of the rater (person or organization)>
+  target: <hash of public key, or URL of the entity being rated>
+  value: <a numeric value in the range 0..1>
+  content: <description or tags relating to rating>
+  timestamp: <date/time of creation>
+  +hash: <cryptographic hash of canonical JSON version of this trust atom>
+  +signature: <cryptographic signature of hash, signed with the private key of source>
+}
+```
 
 - `Source` is the hash of the public key of the person or organization doing the rating.
 - `Target` is the person, organization, or entity being rated.  This may be:
@@ -24,12 +38,12 @@ A `Trust Atom` is a map of keys and values.  The only required keys are `source`
     - a percentage score
 - `content` is any semantic information related to the rating, which may be a description, tags, or any other text
 - `Canocial JSON` is a JSON map of the existing fields:
-  - omitting `signature` and `hash` (both of which rely on the `canonical JSON` itself)
+  - omitting `+signature` and `+hash` (both of which rely on the `canonical JSON` itself)
   - omitting any fields whose value is empty
   - sorting the map by key
   - returning the minified resulting JSON
-- `Hash` is a cryptographic hash of `canocial JSON`, which may be used as a content ID
-- `Signature` is the result of cryptographically signing the `hash` with the private key of the `source` (that key which is paired with the `source` public key)
+- `+Hash` is a cryptographic hash of `canocial JSON`, which may be used as a content ID
+- `+Signature` is the result of cryptographically signing the `+hash` with the private key of the `source` (that key which is paired with the `source` public key)
 
 A simple example, expressed in JSON, with only the required fields:
 
@@ -51,8 +65,8 @@ A fuller example using all currently defined fields:
   "value": 0.99,
   "content": "content addressable graph infrastructure",
   "timestamp": "2015-08-11T22:32:23.207Z",
-  "signature":"7de52c8bd7ec15fa117dca2ca9d6e474746316508337856f0b2e42617670a113845c0f98c34b833869ae47757659fb7051cf13c38c3cd3cba40cb89735c6a48c",
-  "hash": "multihash-QmaGJwJRTrYGChugJrdzUqq7CxwsvNyYuhUPZFvxuJUgtM"
+  "+hash": "multihash-QmaGJwJRTrYGChugJrdzUqq7CxwsvNyYuhUPZFvxuJUgtM",
+  "+signature":"7de52c8bd7ec15fa117dca2ca9d6e474746316508337856f0b2e42617670a113845c0f98c34b833869ae47757659fb7051cf13c38c3cd3cba40cb89735c6a48c"
 }
 ```
 
@@ -63,8 +77,7 @@ An example of a "like" as a Trust Atom:
   "source": "multihash-QmWdprFxhCWzjJ6D9Tw9tj5FyWFauhYuGtDQigVvwfteNv",
   "target": "http://ipfs.io/",
   "content": "like",
-  "timestamp": "2015-08-11T22:32:23.207Z",
-  "signature":"7de52c8bd7ec15fa117dca2ca9d6e474746316508337856f0b2e42617670a113845c0f98c34b833869ae47757659fb7051cf13c38c3cd3cba40cb89735c6a48c",
+  "timestamp": "2015-08-11T22:32:23.207Z"
 }
 ```
 
@@ -74,7 +87,7 @@ Using the example above, the `canonical JSON` would be:
 {"content":"content addressable graph infrastructure","value":0.99,"source":"multihash-QmWdprFxhCWzjJ6D9Tw9tj5FyWFauhYuGtDQigVvwfteNv","target":"http://ipfs.io/"}
 ```
 
-The `hash` is created by applying a hashing function to the `canonical JSON`, which provides a permanent identifier (address) of this Trust Atom, eg:
+The `+hash` is created by applying a hashing function to the `canonical JSON`, which provides a permanent identifier (address) of this Trust Atom, eg:
 
 ```
 multihash-QmemzKk3wiXjNVNrtdj7Mos11dNYzMFbxkfNQJ6W25CwLb
