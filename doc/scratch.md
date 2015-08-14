@@ -29,3 +29,25 @@ context: <context/type>    # 256 char max?
 - Neo4J
 - IPFS
 - Ethereum?
+
+
+NaCl -- 25519 keys [eris supports] -- 32 bytes approx eq to 5000 bytes (or bits?) RSA
+- tweet nacl -- https://github.com/dchest/tweetnacl-js
+- app: asignify on mac
+- minilock
+
+
+
+An example of a "3 star" rating as a Trust Atom:
+
+```json
+{
+  "source": "multihash-QmWdprFxhCWzjJ6D9Tw9tj5FyWFauhYuGtDQigVvwfteNv",
+  "target": "http://ipfs.io/",
+  "content": "like",
+  "raw_value": 3,
+  "maximum": 5,
+  "rating_type": "5-star",
+  "timestamp": "2015-08-11T22:32:23.207Z"
+}
+```
