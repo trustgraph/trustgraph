@@ -15,9 +15,9 @@ isConstraintViolation = (err) ->
     err.neo4j.code is 'Neo.ClientError.Schema.ConstraintViolation'
 
 params = ({quoted, plain}) ->
-  quotedPairs = for propKey, propValue of quoted
+  quotedPairs = for propKey, propValue of quoted when propKey? and propValue?
     "#{propKey}: '#{propValue}'"
-  plainPairs = for propKey, propValue of plain
+  plainPairs = for propKey, propValue of plain when propKey? and propValue?
     "#{propKey}: #{propValue}"
   pairs = quotedPairs.concat plainPairs
   "{#{pairs.join ', '}}"
