@@ -1,11 +1,7 @@
-# Description:
-#   Benefit commands
-#
 # Commands:
 #   hubot create neuron - <data>
 #   hubot create <hash> neuron - <data>
 #   hubot rate <hash> neuron <rating>%
-#
 
 {log, p, pjson} = require 'lightsaber'
 
@@ -22,7 +18,6 @@ DBrainBotCommands = (robot) ->
       log pjson arguments
       msg.send "Created."
 
-
   robot.respond /create (.+) neuron - (.+)$/i, (msg) ->
 
     msg.match.shift()
@@ -31,7 +26,6 @@ DBrainBotCommands = (robot) ->
     Neuron.put { source, hash, data }, ->
       log pjson arguments
       msg.send "Created."
-
 
   robot.respond /rate (.+) neuron ([\d.]+)%$/i, (msg) ->
 

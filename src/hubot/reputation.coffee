@@ -1,10 +1,6 @@
-# Description:
-#   Reputation commands
-#
 # Commands:
 #   hubot rate <person> <value>% on <description>
 #   hubot show reputation of <person>
-#
 
 {log, p, pjson} = require 'lightsaber'
 

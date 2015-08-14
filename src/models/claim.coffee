@@ -10,21 +10,7 @@ class Claim
     query = """
       MERGE (source:Identity { key: '#{source}' })
       MERGE (target:Identity { key: '#{target}' })
-      CREATE UNIQUE (source)-[rating:RATES #{ratingParams}]->(target)
-      RETURN source, target, rating
-      """
-
-    db.cypher { query }, (error, results) ->
-      throw error if error
-      callback results
-
-  @putn: (props, callback) ->
-    { source, target, rating } = props
-    ratingParams = params plain: { rating, timestamp: 'timestamp()' }
-    query = """
-      MERGE (source:Identity { key: '#{source}' })
-      MERGE (target:Neuron { key: '#{target}' })
-      CREATE UNIQUE (source)-[rating:RATES #{ratingParams}]->(target)
+      MERGE (source)-[rating:RATES #{ratingParams}]->(target)
       RETURN source, target, rating
       """
 
