@@ -7,7 +7,7 @@ Trust Exchange is:
   - Compatible with existing rating schemes (scores, percentages, star ratings, etc)
   - Open Source (MIT licensed)
 
-  ![Trust Network Example](https://cdn.rawgit.com/citizencode/trust-exchange/fee63549abcaa480ee18da207ebab7c45321de84/doc/images/network.png)
+![Trust Network Example](https://cdn.rawgit.com/citizencode/trust-exchange/fee63549abcaa480ee18da207ebab7c45321de84/doc/images/network.png)
 
 Trust Exchange is a very young codebase, so expect limited functionality, and don't use it in production just yet.
 
