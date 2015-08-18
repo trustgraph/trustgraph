@@ -51,3 +51,17 @@ An example of a "3 star" rating as a Trust Atom:
   "timestamp": "2015-08-11T22:32:23.207Z"
 }
 ```
+
+
+ethereum
+256 bit word length -- great if fields can fit in that
+lack of floating point support
+ethereum only context
+  source - address derived from public key
+  don't need signature
+or use etherum compatible signing scheme
+    - easy recover
+    - elastic curve signature -- same as bitoicn uses
+
+
+long term -- implement signature scheme as smart contract
