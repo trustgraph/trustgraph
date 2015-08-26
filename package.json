@@ -10,7 +10,7 @@
   ],
   "description": "Distributed trust graph toolkit (pre-alpha)",
   "scripts": {
-    "dev": "bin/hubot",
+    "dev": "HUBOT_HEROKU_KEEPALIVE_URL=none bin/hubot",
     "start": "bin/hubot --adapter slack",
     "test": "mocha"
   },
