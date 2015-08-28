@@ -35,8 +35,12 @@ main = ->
 verify = (md, signature, publicKey) ->
   try
     verified = publicKey.verify md.digest().bytes(), signature
-    log "verification successful"
-  catch
-    log "verification failed"
+    log "Verification successful"
+  catch e
+    if e.message.match /Encryption block is invalid/
+      log "Verification failed"
+    else
+      console.error e
+      process.exit 1
 
 main()
