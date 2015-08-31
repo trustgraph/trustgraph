@@ -65,3 +65,10 @@ or use etherum compatible signing scheme
 
 
 long term -- implement signature scheme as smart contract
+
+----------
+
+-  // Desired queries:
+-  // - query an address' atoms
+-  // - query the atoms of those targets (3+ levels)
+-  // - all ratings on a topic within my network

@@ -1,46 +1,52 @@
 #!/usr/bin/env coffee
 
-{log, p, pjson, sha256} = require 'lightsaber'
-forge = require 'node-forge'
-
 SECURE = 2048
 FAST = 512
-# BITS = SECURE
-BITS = FAST
+# KEY_LENGTH = SECURE
+KEY_LENGTH = FAST
+
+{log, p, pjson, sha256} = require 'lightsaber'
+canonicalJson = require 'json-stable-stringify'
+forge = require 'node-forge'
+generateKeyPair = forge.pki.rsa.generateKeyPair
 
 main = ->
-  trustAtom = {"content": "cultural maven","source": "QmWdprFxhCWzjJ6D9Tw9tj5FyWFauhYuGtDQigVvwfteNv","target": "http://twitter.com/alice","timestamp": "2015-08-11T22:32:23.207Z"}
+  trustAtom =
+    "source": "QmWdprFxhCWzjJ6D9Tw9tj5FyWFauhYuGtDQigVvwfteNv"
+    "target": "http://twitter.com/alice"
+    "content": "cultural maven"
+    "timestamp": "2015-08-11T22:32:23.207Z"
 
-  json = JSON.stringify trustAtom
+  json = canonicalJson trustAtom # Canonical JSON, minified and sorted by keys:
+  # => {"content":"cultural maven","source":"QmWdprFxhCWzjJ6D9Tw9tj5FyWFauhYuGtDQigVvwfteNv","target":"http://twitter.com/alice","timestamp":"2015-08-11T22:32:23.207Z"}
 
-  hash = sha256 json
+  hashOfJson = sha256 json
+  # => d646939062061e0971df7a4c9136c5e80d2e4a2b3d9631210923f8400b6bbd69
 
-  keypair = forge.pki.rsa.generateKeyPair bits: BITS, e: 0x10001
-  {privateKey, publicKey} = keypair
+  {privateKey, publicKey} = generateKeyPair bits: KEY_LENGTH
+  messageDigest = forge.md.sha256.create()
+  messageDigest.update hashOfJson, 'utf8'
+  signature = privateKey.sign messageDigest
 
-  md = forge.md.sha1.create()
-  md.update hash, 'utf8'
-  signature = privateKey.sign md
-  forge.util.bytesToHex signature
+  # Verify with real public key:
+  verify messageDigest, signature, publicKey
+  # => Verification successful
 
-  # verify with real public key:
-  verify md, signature, publicKey
-
-  badActorKeyPair = forge.pki.rsa.generateKeyPair bits: BITS, e: 0x10001
+  badActorKeyPair = generateKeyPair bits: KEY_LENGTH
   badActorPublicKey = badActorKeyPair.publicKey
 
-  # attempt to verify with bad actor public key:
-  verify md, signature, badActorPublicKey
+  # Attempt to verify with bad actor public key:
+  verify messageDigest, signature, badActorPublicKey
+  # => Verification failed
 
-verify = (md, signature, publicKey) ->
+verify = (messageDigest, signature, publicKey) ->
   try
-    verified = publicKey.verify md.digest().bytes(), signature
+    verified = publicKey.verify messageDigest.digest().bytes(), signature
     log "Verification successful"
   catch e
     if e.message.match /Encryption block is invalid/
       log "Verification failed"
     else
-      console.error e
-      process.exit 1
+      throw e
 
 main()
