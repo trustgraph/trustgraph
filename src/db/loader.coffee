@@ -1,6 +1,6 @@
 {log, p, pjson} = require 'lightsaber'
 
-{db, params} = require './neo4j'
+{db, params} = require '../adaptors/neo4j/db'
 
 {nodes, links} = require './fixtures/les-mis'
 Claim          = require '../models/claim'

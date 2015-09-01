@@ -1,7 +1,7 @@
 chai = require 'chai'
 chai.should()
 
-{db} = require '../src/db/neo4j'
+{db} = require '../src/adaptors/neo4j/db'
 Claim = require '../src/models/claim'
 Reputation = require '../src/models/reputation'
 

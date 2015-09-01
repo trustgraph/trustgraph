@@ -1,6 +1,6 @@
 {log, p, pjson} = require 'lightsaber'
 
-{db, params} = require '../db/neo4j'
+{db, params} = require '../adaptors/neo4j/db'
 
 class Neuron
 
