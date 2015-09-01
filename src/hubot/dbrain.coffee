@@ -34,7 +34,7 @@ DBrainBotCommands = (robot) ->
     rating *= 0.01  # convert to percentage
     source = "@#{msg.message.user.name}";
 
-    Claim.put { source, hash, rating }, -> #log pjson arguments
+    Claim.put { source, hash, rating }, ->
       log pjson arguments
       msg.send "Rated."
 
