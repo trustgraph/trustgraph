@@ -11,8 +11,8 @@ ReputationBotCommands = (robot) ->
 
   robot.respond /show reputation of (.+)$/i, (msg) ->
     identity = msg.match[1]
-    Reputation.report identity, (report) ->
-      msg.send report
+    Reputation.report identity
+      .then (report) => msg.send report
 
   robot.respond /rate (.+) ([\d.]+)% (?:at |on )(.+?)$/i, (msg) ->
     msg.match.shift()
