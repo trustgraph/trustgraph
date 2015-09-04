@@ -6,7 +6,6 @@
 
 Claim           = require '../../src/models/claim'
 Reputation      = require '../../src/models/reputation'
-{currentUser}   = require './helpers/user'
 
 ReputationBotCommands = (robot) ->
 
@@ -20,8 +19,11 @@ ReputationBotCommands = (robot) ->
     [target, value, content] = msg.match
     value *= 0.01  # convert to percentage
 
-    source = currentUser msg
+    source = robot.whose msg
     Claim.put { source, target, value, content }
-      .then (messages) -> msg.send messages.join "\n"
+      .then (messages) ->
+        replies = for message in messages
+          "Rating saved to #{message}"
+        msg.send replies.join "\n"
 
 module.exports = ReputationBotCommands

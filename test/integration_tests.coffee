@@ -7,7 +7,7 @@ chai.should()
 neo4j = require '../src/adaptors/neo4j'
 Claim = require '../src/models/claim'
 Reputation = require '../src/models/reputation'
-TrustExchange = require '../src/models/trustExchange'
+trustExchange = require '../src/models/trustExchange'
 
 # TODO DON'T KILL ALL LOCAL NEO4J DATA -- MAYBE PREFIX
 DESTROY_ALL = 'MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r'
@@ -25,6 +25,6 @@ describe 'Reputation', ->
       value: 0.95,
       content: 'water services'
 
-    TrustExchange.configure()
+    trustExchange.configure()
       .then => Claim.put rating
       .then => Reputation.ratingsOf('@jill').should.eventually.deep.equal [rating]

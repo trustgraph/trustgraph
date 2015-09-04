@@ -2,7 +2,6 @@
 #   hubot load demo data
 
 {log, p, pjson} = require 'lightsaber'
-
 Loader          = require '../db/loader'
 
 DbBot = (robot) ->

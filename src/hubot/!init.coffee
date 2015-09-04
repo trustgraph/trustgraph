@@ -1,10 +1,14 @@
 # Commands:
 
 { json, log, p, pjson } = require 'lightsaber'
-TrustExchange = require '../models/trustExchange'
+trustExchange = require '../models/trustExchange'
 
-InitTrustExchange = (robot) ->
-  TrustExchange.configure()
-  robot.brain.set 'TX', TrustExchange
+InitBot = (robot) ->
 
-module.exports = InitTrustExchange
+  trustExchange.configure()
+
+  throw new Error if robot.whose?
+
+  robot.whose = (message) -> "@#{message.message.user.name}"
+
+module.exports = InitBot

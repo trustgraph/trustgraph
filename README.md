@@ -103,6 +103,21 @@ Start a local neo4j instance.  Then you can start the bot locally by running:
 
     npm run dev
 
+If you wish to load environment variable from a local `.env` file:
+
+```
+env `cat .env` npm run dev
+```
+
+### IPFS
+
+If you would like to point to a local IPFS daemon, try adding this line to your
+`.env` file:
+
+```
+IPFS_HOST=/ip4/127.0.0.1/tcp/5001
+```
+
 ## Continuous Ingtegration
 
 Build: [![Circle CI](https://circleci.com/gh/citizencode/trust-exchange/tree/master.svg?style=svg)](https://circleci.com/gh/citizencode/trust-exchange/tree/master)

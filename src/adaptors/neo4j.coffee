@@ -3,6 +3,9 @@ Promise = require 'bluebird'
 neo4j = require 'neo4j'
 
 class Neo4jAdaptor
+  FULL_NAME: "Neo4J"
+  SHORT_NAME: Neo4jAdaptor::FULL_NAME
+
   @create: (args={}) ->
     db = new neo4j.GraphDatabase
       url: process.env['NEO4J_URL'] || process.env['GRAPHENEDB_URL'] || 'http://neo4j:neo4j@localhost:7474'
@@ -20,8 +23,6 @@ class Neo4jAdaptor
     unless @db instanceof neo4j.GraphDatabase
       throw new Error "try calling .create(...) if you called the constructor directly"
 
-  name: -> "Neo4J"
-
   cypher: -> @db.cypher arguments...
 
   putClaim: (props, callback) ->
@@ -34,6 +35,7 @@ class Neo4jAdaptor
       RETURN source, target, rating
       """
     @db.cypher { query }
+      .then (results) => @SHORT_NAME
 
   ratingsOf: (identity) ->
     targetParams = @params quoted: {key: identity}

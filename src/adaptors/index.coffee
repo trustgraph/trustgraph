@@ -6,7 +6,7 @@ Ipfs = require './ipfs'
 class Adaptors
   configure: ->
     Ipfs.create()
-      .catch (err) => console.warn "No IPFS found: #{err}"
+      .catch (err) => console.warn "IPFS not found: #{err}"
       .then (@ipfs) => @ipfs
       .then => neo4j.create()
       .catch (err) => console.warn "Neo4j not found: #{err}"
@@ -16,11 +16,10 @@ class Adaptors
           @ipfs
           @neo4j
         ]
-        @get()
-      .then (adaptors) =>
-        log "Loaded adaptors:"
-        for adaptor in adaptors
-          log "  - #{adaptor.name()}"
+        message = "Loaded adaptors:\n"
+        for adaptor in @get()
+          message += "  - #{adaptor.FULL_NAME}\n"
+        log message
       .catch (e) =>
         console.error e
 
