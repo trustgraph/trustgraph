@@ -12,23 +12,26 @@
   "scripts": {
     "dev": "HUBOT_HEROKU_KEEPALIVE_URL=none bin/hubot",
     "start": "bin/hubot --adapter slack",
-    "test": "mocha"
+    "test": "mocha",
+    "test-verbose": "mocha --full-trace"
   },
   "main": "src/index.coffee",
   "dependencies": {
+    "bluebird": "^2.9.34",
     "hubot": "^2.13.2",
     "hubot-diagnostics": "0.0.1",
     "hubot-help": "^0.1.1",
     "hubot-heroku-keepalive": "0.0.4",
-    "hubot-scripts": "^2.16.1",
     "hubot-slack": "^3.3.0",
-    "hubot-suggest": "*",
+    "hubot-suggest": "citizencode/hubot-suggest#v0.0.3",
     "lightsaber": "^0.4.1",
     "lodash": "^3.10.0",
-    "neo4j": "2.0.0-RC2"
+    "neo4j": "2.0.0-RC2",
+    "nodesphere": "nodesphere/nodesphere#next"
   },
   "devDependencies": {
     "chai": "^3.2.0",
+    "chai-as-promised": "^5.1.0",
     "coffee-script": "^1.9.3",
     "json-stable-stringify": "^1.0.0",
     "mocha": "^2.2.5",

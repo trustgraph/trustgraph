@@ -1,7 +1,9 @@
 # Commands:
+
 #   hubot create neuron - <data>
 #   hubot create <hash> neuron - <data>
 #   hubot rate <hash> neuron <rating>%
+
 
 {log, p, pjson} = require 'lightsaber'
 

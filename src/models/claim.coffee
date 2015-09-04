@@ -1,10 +1,11 @@
 {log, p, pjson} = require 'lightsaber'
-adaptors = require '../adaptors'
+Promise = require 'bluebird'
+trustExchange = require './trustExchange'
 
 class Claim
-
-  @put: (props, callback) ->
-    for adaptor in adaptors
-      adaptor.putClaim props, callback
+  @put: (trustAtom) ->
+    results = for adaptor in trustExchange.adaptors()
+      adaptor.putClaim trustAtom
+    Promise.all results
 
 module.exports = Claim

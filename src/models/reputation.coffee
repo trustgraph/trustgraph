@@ -1,35 +1,25 @@
 {log, p, pjson} = require 'lightsaber'
-{db, params} = require '../adaptors/neo4j/db'
+{ first, flatten, unique } = require 'lodash'
+Promise = require 'bluebird'
+trustExchange = require './trustExchange'
 
 class Reputation
 
-  @report: (identity, callback) ->
-    @stats identity, (ratings) ->
-      reportLines = for {source, target, value, content} in ratings
-        value *= 100
-        "  - #{value}% #{content} (from #{source})"
-      report = if reportLines.length > 0
-        "#{identity} has ratings:\n#{reportLines.join "\n"}"
-      else
-        "#{identity} does not yet have any ratings..."
-      callback report
+  @ratingsOf: (identity) ->
+    ratingSets = for adaptor in trustExchange.adaptors()
+      adaptor.ratingsOf identity
+    Promise.all ratingSets
+      .then (ratingSets) -> unique flatten ratingSets
 
-  @stats: (identity, callback) ->
-    targetParams = params quoted: {key: identity}
-    query = """
-      MATCH (source)
-      MATCH (target:Identity #{targetParams})
-      MATCH (source) -[rating:RATES]-> (target)
-      RETURN source, rating
-    """
-
-    db.cypher { query }, (error, results) ->
-      throw error if error
-      ratings = for result in results
-        source: result.source.properties.key
-        target: identity
-        value: result.rating.properties.value
-        content: result.rating.properties.content
-      callback ratings
+  @report: (identity) ->
+    @ratingsOf identity
+      .then (ratings) =>
+        reportLines = for {source, target, value, content} in ratings
+          value *= 100
+          "  - #{value}% #{content} (from #{source})"
+        report = if reportLines.length > 0
+          "#{identity} has ratings:\n#{reportLines.join "\n"}"
+        else
+          "#{identity} does not yet have any ratings..."
 
 module.exports = Reputation

@@ -1,4 +1,4 @@
-# Trust Exchange
+ # Trust Exchange
 
 Trust Exchange is:
   - An open protocol

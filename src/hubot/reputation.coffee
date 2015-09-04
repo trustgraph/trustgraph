@@ -21,7 +21,7 @@ ReputationBotCommands = (robot) ->
     value *= 0.01  # convert to percentage
 
     source = currentUser msg
-    Claim.put { source, target, value, content }, ->
-      msg.send "Rated."
+    Claim.put { source, target, value, content }
+      .then (messages) -> msg.send messages.join "\n"
 
 module.exports = ReputationBotCommands
