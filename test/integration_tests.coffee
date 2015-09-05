@@ -13,9 +13,10 @@ trustExchange = require '../src/models/trustExchange'
 DESTROY_ALL = 'MATCH (n) OPTIONAL MATCH (n)-[r]-() DELETE n,r'
 
 describe 'Reputation', ->
-  beforeEach (done) ->
-    neo4j.create()
-      .then (db) -> db.cypher query: DESTROY_ALL
+  before (done) ->
+    trustExchange.configure()
+      .then (adaptors) => adaptors.get('neo4j').cypher query: DESTROY_ALL
+      .catch (error) => console.error error
       .then -> done()
 
   it 'should allow users to add and query reputation for other users', ->
@@ -24,7 +25,5 @@ describe 'Reputation', ->
       target: '@jill'
       value: 0.95,
       content: 'water services'
-
-    trustExchange.configure()
-      .then => Claim.put rating
+    Claim.put rating
       .then => Reputation.ratingsOf('@jill').should.eventually.deep.equal [rating]

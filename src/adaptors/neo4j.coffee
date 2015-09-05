@@ -10,20 +10,19 @@ class Neo4jAdaptor
     db = new neo4j.GraphDatabase
       url: process.env['NEO4J_URL'] || process.env['GRAPHENEDB_URL'] || 'http://neo4j:neo4j@localhost:7474'
       auth: process.env['NEO4J_AUTH']
-    db.cypher = Promise.promisify db.cypher
-    db.cypher { query: 'return 0' }
-      .then =>
+    db.cypherAsync = Promise.promisify db.cypher
+    db.cypherAsync query: 'return 0'
+      .catch (error) =>
         if error?.code is 'ECONNREFUSED'
-          console.error "Can't connect to Neo4J: make sure server is running locally, or NEO4J_URL environment variable is set"
-          process.exit 1
-        else
-          return new Neo4jAdaptor {db}
+          return Promise.reject "make sure server is running locally,
+            and NEO4J_URL environment variable is set"
+      .then => return new Neo4jAdaptor {db}
 
   constructor: ({@db}) ->
     unless @db instanceof neo4j.GraphDatabase
       throw new Error "try calling .create(...) if you called the constructor directly"
 
-  cypher: -> @db.cypher arguments...
+  cypher: -> @db.cypherAsync arguments...
 
   putClaim: (props, callback) ->
     { source, target, value, content } = props
@@ -34,7 +33,7 @@ class Neo4jAdaptor
       MERGE (source)-[rating:RATES #{ratingParams}]->(target)
       RETURN source, target, rating
       """
-    @db.cypher { query }
+    @cypher { query }
       .then (results) => @SHORT_NAME
 
   ratingsOf: (identity) ->
@@ -45,7 +44,7 @@ class Neo4jAdaptor
       MATCH (source) -[rating:RATES]-> (target)
       RETURN source, rating
     """
-    @db.cypher { query }
+    @cypher { query }
       .then (results) =>
         ratings = for result in results
           source: result.source.properties.key

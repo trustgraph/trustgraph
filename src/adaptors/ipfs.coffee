@@ -10,8 +10,7 @@ class IpfsAdaptor
 
   @create: (args={}) ->
     nodesphereIpfs.create args
-      .then (ipfs) ->
-        return new IpfsAdaptor {ipfs}
+      .then (ipfs) -> new IpfsAdaptor {ipfs}
 
   constructor: ({@ipfs}) ->
     unless @ipfs instanceof nodesphereIpfs

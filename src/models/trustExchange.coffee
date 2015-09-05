@@ -3,11 +3,9 @@ adaptors = require '../adaptors'
 
 class TrustExchange
 
-  constructor: ->
-    @_adaptors = adaptors
+  constructor: -> @_adaptors = adaptors
 
-  configure: ->
-    @_adaptors.configure()
+  configure: -> @_adaptors.configure()
 
   adaptors: -> @_adaptors.get()
 
