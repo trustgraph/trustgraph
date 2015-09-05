@@ -1,18 +1,20 @@
+Promise = require 'bluebird'
 {log, p, pjson} = require 'lightsaber'
-
-{db, params} = require '../adaptors/neo4j'
 
 {nodes, links} = require './fixtures/les-mis'
 Claim          = require '../models/claim'
 
 class Loader
 
-  @demoDataTrustNetwork: (callback) ->
-    for link in links
+  @demoDataTrustNetwork: ->
+    promises = for link in links
       source = nodes[link.source].name
       target = nodes[link.target].name
       value = link.value
-      Claim.put { source, target, value }, (results) ->
-        log pjson results
+      Claim.put { source, target, value }
+        .then (messages) ->
+          for message in messages
+            "Rating saved to #{message}"
+    Promise.all promises
 
 module.exports = Loader

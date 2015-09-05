@@ -7,6 +7,7 @@ Loader          = require '../db/loader'
 DbBot = (robot) ->
 
   robot.respond /load demo data$/i, (msg) ->
-    Loader.demoDataTrustNetwork (data) -> msg.send "Loaded.\n" + data
+    Loader.demoDataTrustNetwork()
+      .then (replies) => msg.send "Loaded.\n" + replies.join "\n"
 
 module.exports = DbBot
