@@ -120,6 +120,28 @@ If you would like to point to a local IPFS daemon, try adding this line to your
 IPFS_HOST=/ip4/127.0.0.1/tcp/5001
 ```
 
+## Project History
+
+The original vision for Trust Exchange was landed and anchored in 2006 by
+[Harlan T Wood](https://github.com/harlantwood),
+[Adam Apollo](http://www.adamapollo.com/),
+and [Jack Senechal](https://github.com/jacksenechal),
+and subsequently published on the
+[Enlightened Structure](http://www.enlightenedstructure.net/#/Trust-Exchange)
+site.
+
+Harlan met [Noah Thorp](https://twitter.com/noahthorp) in 2007,
+and their very first conversation revolved around this kind
+of trust technology.  Noah and Harlan worked together on various projects,
+and in July 2015 were together at [Citizen Code](http://www.citizencode.io/), along with [Joel Dietz](http://fractastical.com/),
+who had previously designed and written about systems for trust, including
+"[green ether](https://github.com/fractastical/etherea/blob/master/green_ether.md)".
+
+Harlan, Joel, and Noah decided to create an open source, permissively licensed,
+reference implementation of Trust Exchange, as a foundation for free, open,
+interoperable trust systems.  Their plan was enthusiastically supported by
+Adam and Jack, and in August 2015 this version of Trust Exchange was born.
+
 ## See Also
 
 - Hubot: https://hubot.github.com/docs/
