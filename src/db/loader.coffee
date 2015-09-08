@@ -6,15 +6,16 @@ Claim          = require '../models/claim'
 
 class Loader
 
-  @demoDataTrustNetwork: ->
-    promises = for link in links
-      source = nodes[link.source].name
-      target = nodes[link.target].name
-      value = link.value
-      Claim.put { source, target, value }
-        .then (messages) ->
-          for message in messages
-            "Rating saved to #{message}"
-    Promise.all promises
+  @demoData: ->
+    Promise.all Promise.map links, @putLink, concurrency: 1
+
+  @putLink: (link) ->
+    source = nodes[link.source].name
+    target = nodes[link.target].name
+    value = link.value
+    Claim.put { source, target, value }
+      .then (messages) ->
+        for message in messages
+          "Rating saved to #{message}"
 
 module.exports = Loader

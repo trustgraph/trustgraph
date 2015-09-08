@@ -14,14 +14,18 @@ class IpfsAdaptor
 
   constructor: ({@ipfs}) ->
     unless @ipfs instanceof nodesphereIpfs
-      throw new error "@ipfs is not instanceof ipfsAPI -- try calling .create(...) if you called the constructor directly"
+      throw new error "@ipfs is not instanceof ipfsAPI --
+        try calling .create(...) if you called the constructor directly"
 
   putClaim: (trustAtom) ->
     { source, target, value, content } = trustAtom
     json = canonicalJson trustAtom
     @ipfs.put content: json
       .then (hashes) =>
-        throw new Error if hashes.length isnt 1
+        if not hashes?
+          throw new Error "No hash returned for: #{json}"
+        if hashes.length isnt 1
+          throw new Error "Unexpected hashes.length: #{hashes.length}"
         "#{@SHORT_NAME}: #{hashes[0]}"
 
   ratingsOf: (identity) -> Promise.resolve []  # currently we cannot query into IPFS objects...
