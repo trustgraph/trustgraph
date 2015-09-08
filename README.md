@@ -122,14 +122,8 @@ IPFS_HOST=/ip4/127.0.0.1/tcp/5001
 
 Build: [![Circle CI](https://circleci.com/gh/citizencode/trust-exchange/tree/master.svg?style=svg)](https://circleci.com/gh/citizencode/trust-exchange/tree/master)
 
-## Hubot Notes
-
-- https://hubot.github.com/docs/
-
-## Neo4J Notes
-
-- http://neo4j.com/docs/stable/
-
 ## See Also
 
-- https://github.com/jbenet/multihash
+- Hubot: https://hubot.github.com/docs/
+- Neo4J: http://neo4j.com/docs/stable/
+- Multihash: https://github.com/jbenet/multihash
