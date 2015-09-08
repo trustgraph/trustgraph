@@ -1,5 +1,7 @@
  # Trust Exchange
 
+ Latest build: [![Circle CI](https://circleci.com/gh/citizencode/trust-exchange/tree/master.svg?style=svg)](https://circleci.com/gh/citizencode/trust-exchange/tree/master)
+
 Trust Exchange is:
   - An open protocol
   - A toolkit for building and reading distributed trust graphs
@@ -117,10 +119,6 @@ If you would like to point to a local IPFS daemon, try adding this line to your
 ```
 IPFS_HOST=/ip4/127.0.0.1/tcp/5001
 ```
-
-## Continuous Ingtegration
-
-Build: [![Circle CI](https://circleci.com/gh/citizencode/trust-exchange/tree/master.svg?style=svg)](https://circleci.com/gh/citizencode/trust-exchange/tree/master)
 
 ## See Also
 
