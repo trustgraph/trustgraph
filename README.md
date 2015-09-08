@@ -1,6 +1,6 @@
- # Trust Exchange
+# Trust Exchange
 
- Latest build: [![Circle CI](https://circleci.com/gh/citizencode/trust-exchange/tree/master.svg?style=svg)](https://circleci.com/gh/citizencode/trust-exchange/tree/master)
+Latest build: [![Circle CI](https://circleci.com/gh/citizencode/trust-exchange/tree/master.svg?style=svg)](https://circleci.com/gh/citizencode/trust-exchange/tree/master)
 
 Trust Exchange is:
   - An open protocol
