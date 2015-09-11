@@ -1,6 +1,6 @@
 {
   "name": "trust-exchange",
-  "version": "0.0.3",
+  "version": "0.0.4-dev",
   "private": false,
   "license": "MIT",
   "authors": [
@@ -10,7 +10,7 @@
   ],
   "description": "Distributed trust graph toolkit (pre-alpha)",
   "scripts": {
-    "dev": "HUBOT_HEROKU_KEEPALIVE_URL=http://x.com/ bin/hubot",
+    "dev": "bin/hubot",
     "start": "bin/hubot --adapter slack",
     "test": "mocha",
     "test-verbose": "mocha --full-trace"
@@ -24,6 +24,7 @@
     "hubot-heroku-keepalive": "0.0.4",
     "hubot-slack": "^3.3.0",
     "hubot-suggest": "citizencode/hubot-suggest#v0.0.3",
+    "json-stable-stringify": "^1.0.0",
     "lightsaber": "^0.4.1",
     "lodash": "^3.10.0",
     "neo4j": "2.0.0-RC2",
@@ -33,7 +34,6 @@
     "chai": "^3.2.0",
     "chai-as-promised": "^5.1.0",
     "coffee-script": "^1.9.3",
-    "json-stable-stringify": "^1.0.0",
     "mocha": "^2.2.5",
     "node-forge": "^0.6.34"
   },
@@ -44,5 +44,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/citizencode/trust-exchange.git"
+  },
+  "bugs": {
+    "url": "https://github.com/citizencode/trust-exchange/issues"
   }
 }
