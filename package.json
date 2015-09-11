@@ -3,8 +3,8 @@
   "version": "0.0.4-dev",
   "private": false,
   "license": "MIT",
-  "authors": [
-    "Harlan T Wood <harlan@citizencode.io>",
+  "author": "Harlan T Wood <harlan@citizencode.io>",
+  "contributors": [
     "Joel Dietz <joel.dietz@citizencode.io>",
     "Noah Thorp <noah@citizencode.io>"
   ],
