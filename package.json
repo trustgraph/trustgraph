@@ -18,6 +18,8 @@
   "main": "src/index.coffee",
   "dependencies": {
     "bluebird": "^2.9.34",
+    "firebase": "^2.2.9",
+    "fireproof": "^3.0.3",
     "hubot": "^2.13.2",
     "hubot-diagnostics": "0.0.1",
     "hubot-help": "^0.1.1",
