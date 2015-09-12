@@ -1,6 +1,6 @@
 {
   "name": "trust-exchange",
-  "version": "0.0.4-dev",
+  "version": "0.0.4",
   "private": false,
   "license": "MIT",
   "author": "Harlan T Wood <harlan@citizencode.io>",
@@ -30,7 +30,7 @@
     "lightsaber": "^0.4.1",
     "lodash": "^3.10.0",
     "neo4j": "2.0.0-RC2",
-    "nodesphere": "nodesphere/nodesphere#next"
+    "nodesphere": "nodesphere/nodesphere#v0.4.1"
   },
   "devDependencies": {
     "chai": "^3.2.0",
