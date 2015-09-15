@@ -16,20 +16,29 @@ class FirebaseAdaptor
     else # if connection instanceof Firebase  # "the right thing to do", but fails :(
       new Fireproof connection
 
-  putClaim: ({ source, target, value, content, hints }) ->
+  putClaim: ({ source, target, value, content }, options={}) ->
     trustAtom = pick { source, target, value, content }, (value, key) -> value? and key?
     json = canonicalJson trustAtom
-    key = "sha256-#{sha256 json}"
+    atomId = "sha256-#{sha256 json}"
 
-    ref = if hints?.firebase?
-      @fireproof.child "#{hints.firebase}/#{key}"
-    else
-      @fireproof.child key
+    key = if options?.firebase?.path?
+            "#{options.firebase.path}/#{atomId}"
+          else
+            atomId
 
+    ref = @fireproof.child key
     ref.set trustAtom
       .then =>
-        "#{@SHORT_NAME}: #{hints.firebase}/#{key}"
+        "#{@SHORT_NAME}: #{key}"
 
-  ratingsOf: (identity) -> Promise.resolve []  # TODO implement
+  ratingsOf: (entity, options={}) ->
+    @fireproof.child "#{options.firebase.path}/#{entity}/ratings"
+      .on 'value'
+      .then (snapshot) =>
+        ratings = for hash, data of snapshot.val()
+          source: data.source
+          target: data.target
+          value:  data.value
+          content: data.content
 
 module.exports = FirebaseAdaptor

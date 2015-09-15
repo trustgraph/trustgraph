@@ -5,14 +5,14 @@ trustExchange = require './trustExchange'
 
 class Reputation
 
-  @ratingsOf: (identity) ->
+  @ratingsOf: (identity, options) ->
     ratingSets = for adaptor in trustExchange.adaptors()
-      adaptor.ratingsOf identity
+      adaptor.ratingsOf identity, options
     Promise.all ratingSets
       .then (ratingSets) -> unique flatten ratingSets
 
-  @report: (identity) ->
-    @ratingsOf identity
+  @report: (identity, options) ->
+    @ratingsOf identity, options
       .then (ratings) =>
         reportLines = for {source, target, value, content} in ratings
           value *= 100
