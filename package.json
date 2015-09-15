@@ -26,11 +26,11 @@
     "hubot-heroku-keepalive": "0.0.4",
     "hubot-slack": "^3.3.0",
     "hubot-suggest": "citizencode/hubot-suggest#v0.0.3",
+    "ipfs-api": "^2.3.2",
     "json-stable-stringify": "^1.0.0",
     "lightsaber": "^0.4.1",
     "lodash": "^3.10.0",
-    "neo4j": "2.0.0-RC2",
-    "nodesphere": "nodesphere/nodesphere#v0.4.1"
+    "neo4j": "2.0.0-RC2"
   },
   "devDependencies": {
     "chai": "^3.2.0",
