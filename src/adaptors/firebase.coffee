@@ -18,8 +18,11 @@ class FirebaseAdaptor
 
   putClaim: ({ source, target, value, content }, options={}) ->
     trustAtom = pick { source, target, value, content }, (value, key) -> value? and key?
-    json = canonicalJson trustAtom
-    atomId = "sha256-#{sha256 json}"
+
+    # hash should only include source & target. otherwise, duplicates are created when user update rating.
+    # json = canonicalJson trustAtom
+    # atomId = "sha256-#{sha256 json}"
+    atomId = sha256(canonicalJson({ source, target }))
 
     key = if options?.firebase?.path?
             "#{options.firebase.path}/#{atomId}"
