@@ -30,9 +30,8 @@ class FirebaseAdaptor
             atomId
 
     ref = @fireproof.child key
-    ref.set trustAtom
-      .then =>
-        "#{@SHORT_NAME}: #{key}"
+    ref.set(trustAtom).then =>
+      "#{@SHORT_NAME}: #{key}"
 
   ratingsOf: (entity, options={}) ->
     @fireproof.child "#{options.firebase.path}/#{entity}/ratings"
