@@ -5,7 +5,7 @@ class TrustExchange
 
   constructor: -> @_adaptors = adaptors
 
-  configure: -> @_adaptors.configure()
+  configure: (args) -> @_adaptors.configure args?.adaptors
 
   adaptors: -> @_adaptors.get()
 

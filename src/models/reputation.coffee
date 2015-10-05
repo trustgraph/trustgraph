@@ -1,18 +1,24 @@
 {log, p, pjson} = require 'lightsaber'
-{ first, flatten, unique } = require 'lodash'
+{ first, flatten, unique, pluck, round, sum } = require 'lodash'
 Promise = require 'bluebird'
 trustExchange = require './trustExchange'
 
 class Reputation
 
-  @ratingsOf: (identity) ->
+  @ratingsOf: (identity, options) ->
     ratingSets = for adaptor in trustExchange.adaptors()
-      adaptor.ratingsOf identity
+      adaptor.ratingsOf identity, options
     Promise.all ratingSets
       .then (ratingSets) -> unique flatten ratingSets
 
-  @report: (identity) ->
-    @ratingsOf identity
+  @score: (identity, options) ->
+    @ratingsOf identity, options
+    .then (ratings) ->
+      ratingValues = pluck(ratings, 'value')
+      round(sum(ratingValues) / ratingValues.length * 100) if ratingValues.length > 0
+
+  @report: (identity, options) ->
+    @ratingsOf identity, options
       .then (ratings) =>
         reportLines = for {source, target, value, content} in ratings
           value *= 100

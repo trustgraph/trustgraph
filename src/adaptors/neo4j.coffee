@@ -8,7 +8,7 @@ class Neo4jAdaptor
 
   @create: (args={}) ->
     db = new neo4j.GraphDatabase
-      url: process.env['NEO4J_URL'] || process.env['GRAPHENEDB_URL'] || 'http://neo4j:neo4j@localhost:7474'
+      url: process.env['NEO4J_URL'] or process.env['GRAPHENEDB_URL'] or 'http://neo4j:neo4j@localhost:7474'
       auth: process.env['NEO4J_AUTH']
     db.cypherAsync = Promise.promisify db.cypher
     db.cypherAsync query: 'return 0'

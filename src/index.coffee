@@ -11,5 +11,6 @@ hubotModule = (robot) ->
 module.exports = hubotModule
 
 # Export core libraries
-module.exports.Claim =      require './models/claim'
+module.exports.Claim = require './models/claim'
 module.exports.Reputation = require './models/reputation'
+module.exports.instance = require './models/trustExchange'

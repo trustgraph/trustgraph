@@ -1,7 +1,9 @@
 /.pairs
 
-npm-debug.log
 /.env
+/.env.*
 /.hubot_history
 /node_modules/
 /tmp/
+.DS_Store
+npm-debug.log

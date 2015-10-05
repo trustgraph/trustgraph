@@ -3,9 +3,9 @@ Promise = require 'bluebird'
 trustExchange = require './trustExchange'
 
 class Claim
-  @put: (trustAtom) ->
+  @put: (trustAtom, options) ->
     results = for adaptor in trustExchange.adaptors()
-      adaptor.putClaim trustAtom
+      adaptor.putClaim trustAtom, options
     Promise.all results
 
 module.exports = Claim

@@ -105,7 +105,7 @@ Start a local neo4j instance.  Then you can start the bot locally by running:
 
     npm run dev
 
-If you wish to load environment variable from a local `.env` file:
+If you wish to load environment variables from a local `.env` file:
 
 ```
 env `cat .env` npm run dev
