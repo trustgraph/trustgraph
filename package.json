@@ -39,15 +39,14 @@
     "mocha": "^2.2.5",
     "node-forge": "^0.6.34"
   },
-  "engines": {
-    "node": "^0.10",
-    "npm": "2.x"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/citizencode/trust-exchange.git"
   },
   "bugs": {
     "url": "https://github.com/citizencode/trust-exchange/issues"
+  },
+  "browserify": {
+    "transform": ["coffeeify"]
   }
 }
