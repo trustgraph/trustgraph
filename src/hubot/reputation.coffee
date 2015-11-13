@@ -15,11 +15,15 @@ ReputationBotCommands = (robot) ->
       .then (report) => msg.send report
 
   robot.respond /rate (.+) ([\d.]+)% (?:at |on )(.+?)$/i, (msg) ->
-    msg.match.shift()
-    [target, value, content] = msg.match
-    value *= 0.01  # convert to percentage
-
+    [_, target, value, content] = msg.match
     source = robot.whose msg
+    rate msg, {source, target, value, content}
+
+  robot.respond /(.+) rate (.+) ([\d.]+)% (?:at |on )(.+?)$/i, (msg) ->
+    [_, source, target, value, content] = msg.match
+    rate msg, {source, target, value, content}
+
+  rate = (msg, {source, target, value, content}) ->
     Claim.put { source, target, value, content }
       .then (messages) ->
         replies = for message in messages
