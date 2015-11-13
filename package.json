@@ -26,7 +26,7 @@
     "hubot-heroku-keepalive": "0.0.4",
     "hubot-slack": "^3.3.0",
     "hubot-suggest": "citizencode/hubot-suggest#v0.0.3",
-    "ipfs-api": "^2.3.2",
+    "ipfs-api": "^2.7.1",
     "json-stable-stringify": "^1.0.0",
     "lightsaber": "^0.4.1",
     "lodash": "^3.10.0",
@@ -38,6 +38,9 @@
     "coffee-script": "^1.9.3",
     "mocha": "^2.2.5",
     "node-forge": "^0.6.34"
+  },
+  "engines": {
+    "node": ">=4"
   },
   "repository": {
     "type": "git",
