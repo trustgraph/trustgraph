@@ -1,8 +1,3 @@
-deployment:
-  autodeploy:
-    branch: master
-    heroku:
-      appname: trust-exchange-prod
 machine:
   services:
     - neo4j
