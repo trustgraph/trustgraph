@@ -1,10 +1,10 @@
 test:
   override:
     - nvm install 4 && nvm alias default 4
+    - npm install -g npm@latest
     - npm test
     - nvm install 5 && nvm alias default 5
-    - npm test
-    - nvm install stable && nvm alias default stable
+    - npm install -g npm@latest
     - npm test
 machine:
   services:
