@@ -1,4 +1,4 @@
-Copyright 2015 Citizen Code LLC <http://www.citizencode.io/>
+Copyright 2016 CoMakery
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

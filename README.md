@@ -1,6 +1,6 @@
 # Trust Exchange
 
-Latest build: [![Circle CI](https://circleci.com/gh/citizencode/trust-exchange/tree/master.svg?style=svg)](https://circleci.com/gh/citizencode/trust-exchange/tree/master)
+Latest build: [![Circle CI](https://circleci.com/gh/CoMakery/trust-exchange/tree/master.svg?style=svg)](https://circleci.com/gh/CoMakery/trust-exchange/tree/master)
 
 Trust Exchange is:
   - An open protocol
@@ -9,7 +9,7 @@ Trust Exchange is:
   - Compatible with existing rating schemes (scores, percentages, star ratings, etc)
   - Open Source (MIT licensed)
 
-![Trust Network Example](https://cdn.rawgit.com/citizencode/trust-exchange/fee63549abcaa480ee18da207ebab7c45321de84/doc/images/network.png)
+![Trust Network Example](https://cdn.rawgit.com/CoMakery/trust-exchange/fee63549abcaa480ee18da207ebab7c45321de84/doc/images/network.png)
 
 Trust Exchange is a very young codebase, so expect limited functionality, and don't use it in production just yet.
 
@@ -133,7 +133,8 @@ site.
 Harlan met [Noah Thorp](https://twitter.com/noahthorp) in 2007,
 and their very first conversation revolved around this kind
 of trust technology.  Noah and Harlan worked together on various projects,
-and in July 2015 were together at [Citizen Code](http://www.citizencode.io/), along with [Joel Dietz](http://fractastical.com/),
+and in July 2015 were together at [Citizen Code](http://www.citizencode.io/),
+along with [Joel Dietz](http://fractastical.com/),
 who had previously designed and written about systems for trust, including
 "[green ether](https://github.com/fractastical/etherea/blob/master/green_ether.md)".
 

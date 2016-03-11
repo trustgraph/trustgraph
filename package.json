@@ -3,10 +3,10 @@
   "version": "0.0.5",
   "private": false,
   "license": "MIT",
-  "author": "Harlan T Wood <harlan@citizencode.io>",
+  "author": "Harlan T Wood (https://github.com/harlantwood)",
   "contributors": [
-    "Joel Dietz <joel.dietz@citizencode.io>",
-    "Noah Thorp <noah@citizencode.io>"
+    "Noah Thorp (https://github.com/aquabu)",
+    "Joel Dietz (https://github.com/fractastical)"
   ],
   "description": "Distributed trust graph toolkit (pre-alpha)",
   "scripts": {
@@ -25,7 +25,7 @@
     "hubot-help": "^0.1.1",
     "hubot-heroku-keepalive": "0.0.4",
     "hubot-slack": "^3.3.0",
-    "hubot-suggest": "citizencode/hubot-suggest#v0.0.3",
+    "hubot-suggest": "CoMakery/hubot-suggest#v0.0.3",
     "ipfs-api": "^2.7.1",
     "json-stable-stringify": "^1.0.0",
     "lightsaber": "^0.4.1",
@@ -44,10 +44,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/citizencode/trust-exchange.git"
+    "url": "https://github.com/CoMakery/trust-exchange.git"
   },
   "bugs": {
-    "url": "https://github.com/citizencode/trust-exchange/issues"
+    "url": "https://github.com/CoMakery/trust-exchange/issues"
   },
   "browserify": {
     "transform": ["coffeeify"]
