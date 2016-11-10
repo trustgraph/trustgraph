@@ -1,6 +1,6 @@
 {
   "name": "trust-exchange",
-  "version": "0.0.5",
+  "version": "0.2.0-dev",
   "private": false,
   "license": "MIT",
   "author": "Harlan T Wood (https://github.com/harlantwood)",
@@ -20,27 +20,13 @@
   },
   "main": "src/index.coffee",
   "dependencies": {
-    "bluebird": "^2.9.34",
-    "firebase": "^2.2.9",
-    "fireproof": "^3.0.3",
-    "hubot": "^2.13.2",
-    "hubot-diagnostics": "0.0.1",
-    "hubot-help": "^0.1.1",
-    "hubot-heroku-keepalive": "0.0.4",
-    "hubot-slack": "^3.3.0",
-    "hubot-suggest": "CoMakery/hubot-suggest#v0.0.3",
-    "ipfs-api": "^2.7.1",
-    "json-stable-stringify": "^1.0.0",
     "lightsaber": "^0.4.1",
-    "lodash": "^3.10.0",
-    "neo4j": "2.0.0-RC2"
+    "lodash": "^3.10.0"
   },
   "devDependencies": {
     "chai": "^3.2.0",
     "chai-as-promised": "^5.1.0",
-    "coffee-script": "^1.9.3",
     "mocha": "^2.2.5",
-    "node-forge": "^0.6.34",
     "npm-run-all": "^3.1.1"
   },
   "engines": {
@@ -52,10 +38,5 @@
   },
   "bugs": {
     "url": "https://github.com/CoMakery/trust-exchange/issues"
-  },
-  "browserify": {
-    "transform": [
-      "coffeeify"
-    ]
   }
 }

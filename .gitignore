@@ -1,6 +1,5 @@
 /.env
 /.env.*
-/.hubot_history
 /node_modules/
 /tmp/
 .DS_Store
