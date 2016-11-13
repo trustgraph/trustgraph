@@ -1,3 +1,2 @@
---compilers coffee:coffee-script/register
 --recursive
---timeout 30000
+--timeout 2000
