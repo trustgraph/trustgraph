@@ -15,17 +15,34 @@
     "shipit": "npm-run-all --silent pre-push && git push --tags origin head",
     "pre-push": "npm-run-all --silent check-clean test",
     "check-clean": "if [[ $(git status --porcelain) ]]; then echo '*** Please stash or commit changes first ***\n' && exit 1; fi ",
+    "fulltest": "npm-run-all --silent lint test",
     "test": "mocha",
-    "test-verbose": "mocha --full-trace"
+    "test-verbose": "mocha --full-trace",
+    "lint": "eslint --ignore-pattern '!.eslintrc.js' .eslintrc.js test src spike 'bin/*'"
   },
   "main": "src/index.coffee",
   "dependencies": {
+    "bitcore-lib": "^0.13.19",
+    "commander": "^2.9.0",
+    "json-stable-stringify": "^1.0.1",
+    "jsonld-signatures": "github:CoMakery/jsonld-signatures#rename-sig",
     "lightsaber": "^0.6.8",
-    "lodash": "^4.16.6"
+    "lodash": "^4.16.6",
+    "moment": "^2.16.0"
   },
   "devDependencies": {
+    "babel-core": "6.18.2",
+    "babel-eslint": "7.1.0",
+    "babel-preset-es2015": "6.18.0",
+    "babel-preset-stage-0": "6.16.0",
+    "babel-register": "6.18.0",
+    "babel-runtime": "6.18.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
+    "eslint": "^3.10.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.3.2",
+    "eslint-plugin-standard": "^2.0.1",
     "mocha": "^3.1.2",
     "npm-run-all": "^3.1.1"
   },

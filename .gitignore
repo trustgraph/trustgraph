@@ -1,6 +1,7 @@
+.DS_Store
 /.env
 /.env.*
+/claims/
 /node_modules/
 /tmp/
-.DS_Store
 npm-debug.log
