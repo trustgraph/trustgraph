@@ -49,4 +49,7 @@ export default class Trust {
       process.exit(1)
     })
   }
+
+  get = () => d('TODO: implement this')
+
 }
