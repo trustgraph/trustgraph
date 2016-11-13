@@ -19,10 +19,27 @@ Trust Exchange is composed entirely of `Trust Atoms`, an intentionally open form
 
 ## Usage
 
+### Create Claims
+
+```
+$ trust claim --help
+
+Usage: trust claim [options]
+
+Options:
+
+  --creator <creator>        DID or URL of claim creator
+  --target <target>          DID or URI of claim target
+  --algorithm <algorithm>    Signing algorithm
+  --private-key <key>        Bitcoin private key
+  --claim-summary <summary>  Summary of claim type
+  --tags <tag1,tag2>         Add tags / labels
+```
+
 For example:
 
 ```
-trust claim \
+$ trust claim \
   --creator did:00a65b11-593c-4a46-bf64-8b83f3ef698f \
   --target did:59f269a0-0847-4f00-8c4c-26d84e6714c4 \
   --algorithm sha256-ecdsa-secp256k1 \
@@ -67,6 +84,23 @@ Then hash the canonical JSON to get an ID for the claim:
 
 ```
 QmZSLsc5ndnr1YtwVw7fyEqotp5J6KaDYGRi3ty6tiiw1g  # sha2-256 multihash
+```
+
+### Retrieve Claims
+
+```
+$ trust get --help
+
+Usage: trust get [options]
+
+Options:
+
+  --perspective <DID>        Perspective (identity) through which trust network is seen
+  --target <target>          DID or URI of claim target
+  --tags <tag1,tag2>         Filter by tags
+  --creator <creator>        DID or URL of claim creator
+  --summarize                Summarize claims / build analysis
+  --depth <levels>           Crawls trust ratings to specified depth
 ```
 
 ## Project History
