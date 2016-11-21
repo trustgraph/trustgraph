@@ -16,7 +16,7 @@
     "fulltest": "npm-run-all --silent lint test",
     "test": "mocha",
     "testv": "mocha --full-trace",
-    "lint": "eslint --ignore-pattern '!.eslintrc.js' .eslintrc.js test src spike 'bin/*'"
+    "lint": "eslint --ignore-pattern '!.eslintrc.js' .eslintrc.js test src util 'bin/*'",
   },
   "main": "src/index.coffee",
   "dependencies": {
