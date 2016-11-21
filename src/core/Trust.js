@@ -7,17 +7,27 @@ import moment from 'moment'
 
 export default class Trust {
   claim = (opts) => {
-    opts.tags = opts.tags || []
-    opts.tags.push('Claim')
-
     const claim = {
-      '@context': 'https://w3id.org/credentials/v1',
-      type: opts.tags,
+      '@context': 'https://trust.exchange/schemas/TrustClaim.jsonld',
+      // id: multihash of json of final signed claim??? add at end.
+      type: ['Verifiable Claim', 'Rating'],
       issuer: opts.creator,
       issued: moment().format(),
       claim: {
-        id: opts.target,
-        summary: opts.claimSummary
+        '@context': 'https://trust.exchange/schemas/GeneralRating.jsonld',
+        type: ['GeneralRating'],
+        // id: ???
+        target: opts.target,
+        rating: {
+          '@context': 'http://schema.org',
+          type: ['Rating'],
+          // id: ???
+          author: opts.creator,
+          bestRating: 1,
+          worstRating: 0,
+          ratingValue: opts.value,
+          description: opts.description,
+        }
       }
     }
 
