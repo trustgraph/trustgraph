@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "id": "@id",
+    "type": "@type",
+
+    "schema": "http://schema.org/",
+    "dc": "http://purl.org/dc/terms/",
+
+    "author": {"@id": "dc:creator", "@type": "@id"},
+
+    "bestRating": {"@id": "schema:bestRating", "@type": "@id"},
+    "worstRating": {"@id": "schema:worstRating", "@type": "@id"},
+    "ratingValue": {"@id": "schema:ratingValue", "@type": "@id"},
+    "description": {"@id": "schema:description", "@type": "@id"}
+
+  }
+}
