@@ -17,6 +17,7 @@
     "test": "mocha",
     "testv": "mocha --full-trace",
     "lint": "eslint --ignore-pattern '!.eslintrc.js' .eslintrc.js test src util 'bin/*'",
+    "readme": "node -r babel-register util/updateReadme.js"
   },
   "main": "src/index.coffee",
   "dependencies": {

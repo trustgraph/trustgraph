@@ -24,16 +24,17 @@ Trust Exchange is composed entirely of `Trust Atoms`, an intentionally open form
 ```
 trust claim --help
 
-Usage: trust claim [options]
+Usage: trust-claim [options]
 
-Options:
+  Options:
 
-  --creator <creator>        DID or URL of claim creator
-  --target <target>          DID or URI of claim target
-  --algorithm <algorithm>    Signing algorithm
-  --private-key <key>        Bitcoin private key
-  --claim-summary <summary>  Summary of claim type
-  --tags <tag1,tag2>         Add tags / labels
+    -h, --help                   output usage information
+    --creator <creator>          DID or URL of claim creator
+    --target <target>            DID or URL of claim target
+    --description <description>  Rating description
+    --value <value>              Rating weight in the range 0..1
+    --algorithm <algorithm>      Signing algorithm
+    --private-key <key>          Private key
 ```
 
 For example:
@@ -91,16 +92,17 @@ QmZSLsc5ndnr1YtwVw7fyEqotp5J6KaDYGRi3ty6tiiw1g  # sha2-256 multihash
 ```
 trust get --help
 
-Usage: trust get [options]
+Usage: trust-get [options]
 
-Options:
+  Options:
 
-  --perspective <DID>        Perspective (identity) through which trust network is seen
-  --target <target>          DID or URI of claim target
-  --tags <tag1,tag2>         Filter by tags
-  --creator <creator>        DID or URL of claim creator
-  --summarize                Summarize claims / build analysis
-  --depth <levels>           Crawls trust ratings to specified depth
+    -h, --help           output usage information
+    --perspective <DID>  Perspective (identity) through which trust network is seen
+    --target <target>    DID or URI of claim target
+    --tags <tag1,tag2>   Filter by tags
+    --creator <creator>  DID or URL of claim creator
+    --summarize          Summarize claims / build analysis
+    --depth <levels>     Crawls trust ratings to specified depth
 ```
 
 ## Project History
