@@ -10,14 +10,12 @@
   ],
   "description": "Distributed trust graph toolkit (pre-alpha)",
   "scripts": {
-    "dev": "bin/hubot",
-    "start": "bin/hubot --adapter slack",
     "shipit": "npm-run-all --silent pre-push && git push --tags origin head",
     "pre-push": "npm-run-all --silent check-clean test",
     "check-clean": "if [[ $(git status --porcelain) ]]; then echo '*** Please stash or commit changes first ***\n' && exit 1; fi ",
     "fulltest": "npm-run-all --silent lint test",
     "test": "mocha",
-    "test-verbose": "mocha --full-trace",
+    "testv": "mocha --full-trace",
     "lint": "eslint --ignore-pattern '!.eslintrc.js' .eslintrc.js test src spike 'bin/*'"
   },
   "main": "src/index.coffee",

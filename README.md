@@ -22,7 +22,7 @@ Trust Exchange is composed entirely of `Trust Atoms`, an intentionally open form
 ### Create Claims
 
 ```
-$ trust claim --help
+trust claim --help
 
 Usage: trust claim [options]
 
@@ -39,7 +39,7 @@ Options:
 For example:
 
 ```
-$ trust claim \
+trust claim \
   --creator did:00a65b11-593c-4a46-bf64-8b83f3ef698f \
   --target did:59f269a0-0847-4f00-8c4c-26d84e6714c4 \
   --algorithm sha256-ecdsa-secp256k1 \
@@ -89,7 +89,7 @@ QmZSLsc5ndnr1YtwVw7fyEqotp5J6KaDYGRi3ty6tiiw1g  # sha2-256 multihash
 ### Retrieve Claims
 
 ```
-$ trust get --help
+trust get --help
 
 Usage: trust get [options]
 
