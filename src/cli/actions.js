@@ -4,7 +4,7 @@ import config from 'commander'
 import Trust from '../core/Trust'
 
 class Actions {
-  constructor () {
+  constructor() {
     this.actions = {}
     this.actions.claim = [
       // TODO make some options required
