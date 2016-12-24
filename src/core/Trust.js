@@ -54,7 +54,7 @@ export default class Trust {
       const id = run('ipfs add -q claims/xyz').toString().trim()
       d('open https://ipfs.io/ipfs/' + id)
       return
-    }).catch(function (error) {
+    }).catch((error) => {
       console.error(error.stack)
       process.exit(1)
     })
