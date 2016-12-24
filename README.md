@@ -43,7 +43,7 @@ For example:
 trust claim \
   --creator did:00a65b11-593c-4a46-bf64-8b83f3ef698f \
   --target did:59f269a0-0847-4f00-8c4c-26d84e6714c4 \
-  --algorithm sha256-ecdsa-secp256k1 \
+  --algorithm EcdsaKoblitzSignature2016 \
   --private-key L4mEi7eEdTNNFQEWaa7JhUKAbtHdVvByGAqvpJKC53mfiqunjBjw \
   --claim-summary 'Awesome paper!!!' \
   --tags 'Reputation, Professional'
@@ -66,9 +66,9 @@ Creates the signed JSON-LD:
         "summary": "Awesome paper!!!"
     },
     "signature": {
-        "type": "sha256-ecdsa-secp256k1-2016",
+        "type": "EcdsaKoblitzSignature2016",
         "created": "2016-11-10T09:40:22Z",
-        "creator": "sha256-ecdsa-secp256k1-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b",
+        "creator": "EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b",
         "domain": "example.com",
         "signatureValue": "H7P9Da4/JlqTUiJyYJPQIgAD4oWKDhjQ/J5wDC2ma75KPG07yWskDthLEJxcpFwu+xzTIAQa9O1I9dVOkCqsqEY="
     }
@@ -78,7 +78,7 @@ Creates the signed JSON-LD:
 We canonicalize the JSON, by minifying and sorting hashes by keys:
 
 ```json
-{"@context":"https://w3id.org/credentials/v1","claim":{"id":"did:59f269a0-0847-4f00-8c4c-26d84e6714c4","summary":"Awesome paper!!!"},"issued":"2016-11-10T01:40:22-08:00","issuer":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","signature":{"created":"2016-11-10T09:40:22Z","creator":"sha256-ecdsa-secp256k1-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b","domain":"example.com","signatureValue":"H7P9Da4/JlqTUiJyYJPQIgAD4oWKDhjQ/J5wDC2ma75KPG07yWskDthLEJxcpFwu+xzTIAQa9O1I9dVOkCqsqEY=","type":"sha256-ecdsa-secp256k1-2016"},"type":["Reputation","Professional","Claim"]}
+{"@context":"https://w3id.org/credentials/v1","claim":{"id":"did:59f269a0-0847-4f00-8c4c-26d84e6714c4","summary":"Awesome paper!!!"},"issued":"2016-11-10T01:40:22-08:00","issuer":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","signature":{"created":"2016-11-10T09:40:22Z","creator":"EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b","domain":"example.com","signatureValue":"H7P9Da4/JlqTUiJyYJPQIgAD4oWKDhjQ/J5wDC2ma75KPG07yWskDthLEJxcpFwu+xzTIAQa9O1I9dVOkCqsqEY=","type":"EcdsaKoblitzSignature2016"},"type":["Reputation","Professional","Claim"]}
 ```
 
 Then hash the canonical JSON to get an ID for the claim:

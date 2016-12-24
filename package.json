@@ -24,7 +24,7 @@
     "bitcore-lib": "^0.13.19",
     "commander": "^2.9.0",
     "json-stable-stringify": "^1.0.1",
-    "jsonld-signatures": "github:CoMakery/jsonld-signatures#rename-sig",
+    "jsonld-signatures": "github:digitalbazaar/jsonld-signatures#94823a9d3c3482e631058989c1d77987743bf570",
     "lightsaber": "^0.6.8",
     "lodash": "^4.16.6",
     "moment": "^2.16.0"

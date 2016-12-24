@@ -37,10 +37,10 @@ export default class Trust {
     let result
     jsonldSignatures.promises.sign(claim, {
       privateKeyWif: opts.privateKey,
-      algorithm: 'sha256-ecdsa-secp256k1-2016',
+      algorithm: 'EcdsaKoblitzSignature2016',
       domain: 'example.com',
-      creator: 'sha256-ecdsa-secp256k1-public-key:' + new bitcore.PrivateKey(opts.privateKey).toPublicKey()
-    }).then(function (_result) {
+      creator: 'EcdsaKoblitz-public-key:' + new bitcore.PrivateKey(opts.privateKey).toPublicKey()
+    }).then((_result) => {
       result = _result
       d('\n\nsigned json:')
       d(result)
