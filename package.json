@@ -4,6 +4,9 @@
   "private": false,
   "license": "MIT",
   "author": "Harlan T Wood (https://github.com/harlantwood)",
+  "bin": {
+    "trust": "bin/trust"
+  },
   "contributors": [
     "Jack Senechal (https://github.com/jacksenechal)",
     "Noah Thorp (https://github.com/aquabu)",
