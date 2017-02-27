@@ -10,10 +10,10 @@ node_js:
   - stable
 
 before_install:
-  - npm install -g npm@latest
+  - npm install -g yarn@latest
 
 script:
-  - npm run lint
+  - yarn run ci
 
 notifications:
   slack:
