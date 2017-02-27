@@ -28,7 +28,7 @@
     "bitcore-lib": "^0.13.19",
     "commander": "^2.9.0",
     "json-stable-stringify": "^1.0.1",
-    "jsonld-signatures": "github:digitalbazaar/jsonld-signatures#94823a9d3c3482e631058989c1d77987743bf570",
+    "jsonld-signatures": "github:digitalbazaar/jsonld-signatures#64905a77c50e494a223f8083ab9ca7ee4c17a270",
     "lightsaber": "^0.6.8",
     "lodash": "^4.17.4",
     "moment": "^2.17.1"

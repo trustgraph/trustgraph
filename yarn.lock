@@ -102,7 +102,7 @@ assertion-error@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/assertion-error/-/assertion-error-1.0.2.tgz#13ca515d86206da0bac66e834dd397d87581094c"
 
-async@^1.4.2:
+async@^1.5.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
@@ -1215,9 +1215,9 @@ es6-promise@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-2.0.1.tgz#ccc4963e679f0ca9fb187c777b9e583d3c7573c2"
 
-es6-promise@~3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-3.3.1.tgz#a08cdde84ccdbf34d027a1451bc91d4bcd28a613"
+es6-promise@~4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-4.0.5.tgz#7882f30adde5b240ccfa7f7d78c548330951ae42"
 
 es6-set@~0.1.3:
   version "0.1.4"
@@ -1787,17 +1787,16 @@ jsonify@~0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
 
-"jsonld-signatures@github:digitalbazaar/jsonld-signatures#94823a9d3c3482e631058989c1d77987743bf570":
+"jsonld-signatures@github:digitalbazaar/jsonld-signatures#64905a77c50e494a223f8083ab9ca7ee4c17a270":
   version "1.1.5"
-  resolved "https://codeload.github.com/digitalbazaar/jsonld-signatures/tar.gz/94823a9d3c3482e631058989c1d77987743bf570"
+  resolved "https://codeload.github.com/digitalbazaar/jsonld-signatures/tar.gz/64905a77c50e494a223f8083ab9ca7ee4c17a270"
   dependencies:
-    async "^1.4.2"
+    async "^1.5.2"
     bitcore-message "github:CoMakery/bitcore-message#dist"
     commander "~2.9.0"
-    es6-promise "~3.3.1"
+    es6-promise "~4.0.5"
     jsonld "0.4.3"
-    node-forge "~0.6.42"
-    underscore "~1.8.3"
+    node-forge "~0.6.45"
 
 jsonld@0.4.3:
   version "0.4.3"
@@ -2025,7 +2024,7 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
 
-node-forge@~0.6.42:
+node-forge@~0.6.45:
   version "0.6.49"
   resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.6.49.tgz#f1ee95d5d74623938fe19d698aa5a26d54d2f60f"
 
@@ -2589,10 +2588,6 @@ type-detect@^1.0.0:
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
-
-underscore@~1.8.3:
-  version "1.8.3"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
 
 user-home@^2.0.0:
   version "2.0.0"
