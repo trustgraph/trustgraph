@@ -59,7 +59,7 @@ Creates the signed JSON-LD:
         "Rating"
     ],
     "issuer": "did:00a65b11-593c-4a46-bf64-8b83f3ef698f",
-    "issued": "2017-02-26T20:56:25-08:00",
+    "issued": "2017-02-26T22:33:02-08:00",
     "claim": {
         "@context": "http://schema.trust.exchange/GeneralRating.jsonld",
         "type": [
@@ -79,11 +79,16 @@ Creates the signed JSON-LD:
         }
     },
     "signature": {
-        "type": "EcdsaKoblitzSignature2016",
-        "created": "2016-11-10T09:40:22Z",
-        "creator": "EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b",
-        "domain": "example.com",
-        "signatureValue": "H7P9Da4/JlqTUiJyYJPQIgAD4oWKDhjQ/J5wDC2ma75KPG07yWskDthLEJxcpFwu+xzTIAQa9O1I9dVOkCqsqEY="
+        "type": "sec:EcdsaKoblitzSignature2016",
+        "http://purl.org/dc/terms/created": {
+            "type": "xsd:dateTime",
+            "@value": "2017-02-27T06:33:02Z"
+        },
+        "http://purl.org/dc/terms/creator": {
+            "id": "EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"
+        },
+        "sec:domain": "example.com",
+        "signature:Value": "HwgMGOftgzpIU5Jm1dj6lVIYSc/Ta7zPqk2vxo1VORSjYmxIKuFyC5M1bd/+ukZO+ML2wLp4mMmCwfie6TZiSOE="
     }
 }
 ```
@@ -91,13 +96,13 @@ Creates the signed JSON-LD:
 We canonicalize the JSON, by minifying and sorting hashes by keys:
 
 ```json
-{"@context":"https://w3id.org/credentials/v1","claim":{"id":"did:59f269a0-0847-4f00-8c4c-26d84e6714c4","summary":"Awesome paper!!!"},"issued":"2016-11-10T01:40:22-08:00","issuer":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","signature":{"created":"2016-11-10T09:40:22Z","creator":"EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b","domain":"example.com","signatureValue":"H7P9Da4/JlqTUiJyYJPQIgAD4oWKDhjQ/J5wDC2ma75KPG07yWskDthLEJxcpFwu+xzTIAQa9O1I9dVOkCqsqEY=","type":"EcdsaKoblitzSignature2016"},"type":["Reputation","Professional","Claim"]}
+{"@context":"http://schema.trust.exchange/TrustClaim.jsonld","claim":{"@context":"http://schema.trust.exchange/GeneralRating.jsonld","rating":{"@context":"http://schema.org","author":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","bestRating":1,"description":"Elixir programming","ratingValue":"0.99","type":["Rating"],"worstRating":0},"target":"did:59f269a0-0847-4f00-8c4c-26d84e6714c4","type":["GeneralRating"]},"issued":"2017-02-26T22:33:02-08:00","issuer":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","signature":{"http://purl.org/dc/terms/created":{"@value":"2017-02-27T06:33:02Z","type":"xsd:dateTime"},"http://purl.org/dc/terms/creator":{"id":"EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"},"sec:domain":"example.com","signature:Value":"HwgMGOftgzpIU5Jm1dj6lVIYSc/Ta7zPqk2vxo1VORSjYmxIKuFyC5M1bd/+ukZO+ML2wLp4mMmCwfie6TZiSOE=","type":"sec:EcdsaKoblitzSignature2016"},"type":["Verifiable Claim","Rating"]}
 ```
 
 Then hash the canonical JSON to get an ID for the claim:
 
 ```
-QmZSLsc5ndnr1YtwVw7fyEqotp5J6KaDYGRi3ty6tiiw1g  # sha2-256 multihash
+Qmc1NS5b7ST9nEwo5krZme4amXaumEcQRTAbF37Rfm85sd  # sha2-256 multihash
 ```
 
 ### Retrieve Claims
