@@ -107,6 +107,11 @@ Qmc1NS5b7ST9nEwo5krZme4amXaumEcQRTAbF37Rfm85sd  # sha2-256 multihash
 
 ### Retrieve Claims
 
+***NOTE: claim retrieval/search is not yet implemented!***
+
+Below is an API sketch; please submit any
+comments or requests as Github issues.
+
 ```
 trust get --help
 
