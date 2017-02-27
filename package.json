@@ -4,12 +4,11 @@
   "private": false,
   "license": "MIT",
   "author": "Harlan T Wood (https://github.com/harlantwood)",
-  "bin": {
-    "trust": "bin/trust"
-  },
   "contributors": [
     "Jack Senechal (https://github.com/jacksenechal)",
     "Noah Thorp (https://github.com/aquabu)",
+    "Manu Sporny (https://github.com/msporny)",
+    "Christopher Allen (https://github.com/ChristopherA)",
     "Joel Dietz (https://github.com/fractastical)"
   ],
   "description": "Distributed trust graph toolkit (pre-alpha)",
@@ -24,6 +23,9 @@
     "readme": "node -r babel-register util/updateReadme.js"
   },
   "main": "src/index.coffee",
+  "bin": {
+    "trust": "bin/trust"
+  },
   "dependencies": {
     "bitcore-lib": "^0.13.19",
     "commander": "^2.9.0",
