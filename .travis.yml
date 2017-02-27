@@ -13,7 +13,7 @@ before_install:
   - npm install -g yarn@latest
 
 script:
-  - yarn run ci
+  - yarn run lint:ci
 
 notifications:
   slack:
