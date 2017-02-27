@@ -8,18 +8,18 @@ import moment from 'moment'
 export default class Trust {
   claim = (opts) => {
     const claim = {
-      '@context': 'http://schema.trust.exchange/TrustClaim.jsonld',
+      '@context': 'https://schema.trust.exchange/TrustClaim.jsonld',
       // id: multihash of json of final signed claim??? add at end.
       type: ['Verifiable Claim', 'Rating'],
       issuer: opts.creator,
       issued: moment().format(),
       claim: {
-        '@context': 'http://schema.trust.exchange/GeneralRating.jsonld',
+        '@context': 'https://schema.trust.exchange/GeneralRating.jsonld',
         type: ['GeneralRating'],
         // id: ???
         target: opts.target,
         rating: {
-          '@context': 'http://schema.org',
+          '@context': 'https://schema.org',
           type: ['Rating'],
           // id: ???
           author: opts.creator,
