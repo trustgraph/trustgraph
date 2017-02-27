@@ -43,27 +43,40 @@ For example:
 trust claim \
   --creator did:00a65b11-593c-4a46-bf64-8b83f3ef698f \
   --target did:59f269a0-0847-4f00-8c4c-26d84e6714c4 \
+  --description 'Elixir programming' \
+  --value 0.99 \
   --algorithm EcdsaKoblitzSignature2016 \
-  --private-key L4mEi7eEdTNNFQEWaa7JhUKAbtHdVvByGAqvpJKC53mfiqunjBjw \
-  --claim-summary 'Awesome paper!!!' \
-  --tags 'Reputation, Professional'
+  --private-key L4mEi7eEdTNNFQEWaa7JhUKAbtHdVvByGAqvpJKC53mfiqunjBjw
 ```
 
 Creates the signed JSON-LD:
 
 ```json
 {
-    "@context": "https://w3id.org/credentials/v1",
+    "@context": "http://schema.trust.exchange/TrustClaim.jsonld",
     "type": [
-        "Reputation",
-        "Professional",
-        "Claim"
+        "Verifiable Claim",
+        "Rating"
     ],
     "issuer": "did:00a65b11-593c-4a46-bf64-8b83f3ef698f",
-    "issued": "2016-11-10T01:40:22-08:00",
+    "issued": "2017-02-26T20:56:25-08:00",
     "claim": {
-        "id": "did:59f269a0-0847-4f00-8c4c-26d84e6714c4",
-        "summary": "Awesome paper!!!"
+        "@context": "http://schema.trust.exchange/GeneralRating.jsonld",
+        "type": [
+            "GeneralRating"
+        ],
+        "target": "did:59f269a0-0847-4f00-8c4c-26d84e6714c4",
+        "rating": {
+            "@context": "http://schema.org",
+            "type": [
+                "Rating"
+            ],
+            "author": "did:00a65b11-593c-4a46-bf64-8b83f3ef698f",
+            "bestRating": 1,
+            "worstRating": 0,
+            "ratingValue": "0.99",
+            "description": "Elixir programming"
+        }
     },
     "signature": {
         "type": "EcdsaKoblitzSignature2016",
