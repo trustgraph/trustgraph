@@ -32,6 +32,7 @@ Usage: trust-claim [options]
     --creator <creator>          DID or URL of claim creator
     --target <target>            DID or URL of claim target
     --description <description>  Rating description
+    --tags <tag1, tag2>          Rating tags
     --value <value>              Rating weight in the range 0..1
     --algorithm <algorithm>      Signing algorithm
     --private-key <key>          Private key
@@ -59,7 +60,7 @@ Creates the signed JSON-LD:
         "Rating"
     ],
     "issuer": "did:00a65b11-593c-4a46-bf64-8b83f3ef698f",
-    "issued": "2017-02-26T22:33:02-08:00",
+    "issued": "2017-03-02T22:07:32-08:00",
     "claim": {
         "@context": "https://schema.trust.exchange/GeneralRating.jsonld",
         "type": [
@@ -80,29 +81,31 @@ Creates the signed JSON-LD:
     },
     "signature": {
         "type": "sec:EcdsaKoblitzSignature2016",
-        "https://purl.org/dc/terms/created": {
-            "type": "xsd:dateTime",
-            "@value": "2017-02-27T06:33:02Z"
+        "http://purl.org/dc/terms/created": {
+            "type": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "@value": "2017-03-03T06:07:32Z"
         },
-        "https://purl.org/dc/terms/creator": {
+        "http://purl.org/dc/terms/creator": {
             "id": "EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"
         },
         "sec:domain": "example.com",
-        "signature:Value": "HwgMGOftgzpIU5Jm1dj6lVIYSc/Ta7zPqk2vxo1VORSjYmxIKuFyC5M1bd/+ukZO+ML2wLp4mMmCwfie6TZiSOE="
+        "signature:Value": "IJ9P6KQFWbYimr1tfWVg+Z6q9mPpz6KJ6jpd65U6BP5tRK1BMeCSXHuhSLOsS9zfwWd4pBOhxM7mEuVMVicq3+I="
     }
 }
 ```
 
+This structure reflects the [JSON-LD Verifiable Claim](https://opencreds.github.io/vc-data-model/#expressing-entity-credentials-in-json) structure.
+
 We canonicalize the JSON, by minifying and sorting hashes by keys:
 
 ```json
-{"@context":"https://schema.trust.exchange/TrustClaim.jsonld","claim":{"@context":"https://schema.trust.exchange/GeneralRating.jsonld","rating":{"@context":"https://schema.org","author":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","bestRating":1,"description":"Elixir programming","ratingValue":"0.99","type":["Rating"],"worstRating":0},"target":"did:59f269a0-0847-4f00-8c4c-26d84e6714c4","type":["GeneralRating"]},"issued":"2017-02-26T22:33:02-08:00","issuer":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","signature":{"https://purl.org/dc/terms/created":{"@value":"2017-02-27T06:33:02Z","type":"xsd:dateTime"},"https://purl.org/dc/terms/creator":{"id":"EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"},"sec:domain":"example.com","signature:Value":"HwgMGOftgzpIU5Jm1dj6lVIYSc/Ta7zPqk2vxo1VORSjYmxIKuFyC5M1bd/+ukZO+ML2wLp4mMmCwfie6TZiSOE=","type":"sec:EcdsaKoblitzSignature2016"},"type":["Verifiable Claim","Rating"]}
+{"@context":"https://schema.trust.exchange/TrustClaim.jsonld","claim":{"@context":"https://schema.trust.exchange/GeneralRating.jsonld","rating":{"@context":"https://schema.org","author":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","bestRating":1,"description":"Elixir programming","ratingValue":"0.99","type":["Rating"],"worstRating":0},"target":"did:59f269a0-0847-4f00-8c4c-26d84e6714c4","type":["GeneralRating"]},"issued":"2017-03-02T22:07:32-08:00","issuer":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","signature":{"http://purl.org/dc/terms/created":{"@value":"2017-03-03T06:07:32Z","type":"http://www.w3.org/2001/XMLSchema#dateTime"},"http://purl.org/dc/terms/creator":{"id":"EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"},"sec:domain":"example.com","signature:Value":"IJ9P6KQFWbYimr1tfWVg+Z6q9mPpz6KJ6jpd65U6BP5tRK1BMeCSXHuhSLOsS9zfwWd4pBOhxM7mEuVMVicq3+I=","type":"sec:EcdsaKoblitzSignature2016"},"type":["Verifiable Claim","Rating"]}
 ```
 
 Then hash the canonical JSON to get an ID for the claim:
 
 ```
-Qmc1NS5b7ST9nEwo5krZme4amXaumEcQRTAbF37Rfm85sd  # sha2-256 multihash
+QmNu7NqYpPd2HSXiFVq2uBXwVvzzhEjbNBQktVfnLZb8KW  # sha2-256 multihash
 ```
 
 ### Retrieve Claims
@@ -121,11 +124,31 @@ Usage: trust-get [options]
 
     -h, --help           output usage information
     --perspective <DID>  Perspective (identity) through which trust network is seen
-    --target <target>    DID or URI of claim target
-    --tags <tag1,tag2>   Filter by tags
     --creator <creator>  DID or URL of claim creator
-    --summarize          Summarize claims / build analysis
+    --target <target>    DID or URI of claim target
+    --tags <tag1, tag2>  Filter by tags
     --depth <levels>     Crawls trust ratings to specified depth
+    --min-value <value>  Min trust rating 0..1
+    --max-value <value>  Max trust rating 0..1
+```
+
+```
+trust map --help
+
+Usage: trust-map [options]
+
+  Options:
+
+    -h, --help           output usage information
+    --perspective <DID>  Perspective (identity) through which trust network is seen
+    --creator <creator>  DID or URL of claim creator
+    --target <target>    DID or URI of claim target
+    --tags <tag1, tag2>  Filter by tags
+    --depth <levels>     Crawls trust ratings to specified depth
+    --min-value <value>  Min trust rating 0..1
+    --max-value <value>  Max trust rating 0..1
+    --summarize          Summarize claims / build analysis
+    --falloff            Trust level relative to depth, eg: [1, 0.5, 0.33]
 ```
 
 ## Project History
