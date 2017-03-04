@@ -12,7 +12,7 @@ class Actions {
       ['--creator <creator>',         'DID or URL of claim creator'],
       ['--target <target>',           'DID or URL of claim target'],
       ['--description <description>', 'Rating description'],
-      ['--tags "<tag1, tag2>"',       'Rating tags'],
+      ['--tags <tag1, tag2>',         'Rating tags'],
       ['--value <value>',             'Rating weight in the range 0..1'],  // TODO make it numeric && validate between 0..1
       ['--algorithm <algorithm>',     'Signing algorithm'],
       ['--private-key <key>',         'Private key']
@@ -21,7 +21,7 @@ class Actions {
       ['--perspective <DID>',       'Perspective (identity) through which trust network is seen'],
       ['--creator <creator>',       'DID or URL of claim creator'],
       ['--target <target>',         'DID or URI of claim target'],
-      ['--tags "<tag1, tag2>"',     'Filter by tags'],
+      ['--tags <tag1, tag2>',       'Filter by tags'],
       ['--depth <levels>',          'Crawls trust ratings to specified depth'],
       ['--min-value <value>',       'Min trust rating 0..1'],
       ['--max-value <value>',       'Max trust rating 0..1']
