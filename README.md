@@ -109,8 +109,10 @@ QmbVYv7Zih44uJ8MAcpxQ3TZGKUscNoYyK6UKUaut6jK77  # sha2-256 multihash
 
 ***NOTE: claim retrieval/search is not yet implemented!***
 
-Below is an API sketch; please submit any
+Below are API sketches; please submit any
 comments or requests as Github issues.
+
+#### `get`: retrieve a collection of ratings
 
 ```
 trust get --help
@@ -128,6 +130,8 @@ Usage: trust-get [options]
     --min-value <value>  Min trust rating 0..1
     --max-value <value>  Max trust rating 0..1
 ```
+
+#### `map`: retrieve and analyze a collection of ratings
 
 ```
 trust map --help
