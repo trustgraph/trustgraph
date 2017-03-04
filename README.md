@@ -55,24 +55,18 @@ Creates the signed JSON-LD:
 ```json
 {
     "@context": "https://schema.trust.exchange/TrustClaim.jsonld",
-    "type": [
-        "Verifiable Claim",
-        "Rating"
-    ],
+    "type": "TrustClaim",
     "issuer": "did:00a65b11-593c-4a46-bf64-8b83f3ef698f",
-    "issued": "2017-03-02T22:07:32-08:00",
+    "issued": "2017-03-04T01:47:40-08:00",
     "claim": {
-        "@context": "https://schema.trust.exchange/GeneralRating.jsonld",
-        "type": [
-            "GeneralRating"
-        ],
-        "target": "did:59f269a0-0847-4f00-8c4c-26d84e6714c4",
-        "rating": {
-            "@context": "https://schema.org",
-            "type": [
-                "Rating"
-            ],
-            "author": "did:00a65b11-593c-4a46-bf64-8b83f3ef698f",
+        "@context": "https://schema.org/",
+        "type": "Review",
+        "itemReviewed": "did:59f269a0-0847-4f00-8c4c-26d84e6714c4",
+        "author": "did:00a65b11-593c-4a46-bf64-8b83f3ef698f",
+        "keywords": "programming, code, hax0r",
+        "reviewRating": {
+            "@context": "https://schema.org/",
+            "type": "Rating",
             "bestRating": 1,
             "worstRating": 0,
             "ratingValue": "0.99",
@@ -83,13 +77,13 @@ Creates the signed JSON-LD:
         "type": "sec:EcdsaKoblitzSignature2016",
         "http://purl.org/dc/terms/created": {
             "type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2017-03-03T06:07:32Z"
+            "@value": "2017-03-04T09:47:40Z"
         },
         "http://purl.org/dc/terms/creator": {
             "id": "EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"
         },
         "sec:domain": "example.com",
-        "signature:Value": "IJ9P6KQFWbYimr1tfWVg+Z6q9mPpz6KJ6jpd65U6BP5tRK1BMeCSXHuhSLOsS9zfwWd4pBOhxM7mEuVMVicq3+I="
+        "signature:Value": "H9FPO1Hcv0Gk/rBSiOxPhsxlgQ1EvAE0RJLqQ7pVJf6ABjBFX0ZnLqAitutqQE2RIRUDAk235Ngz7ZcdEQ5SryY="
     }
 }
 ```
@@ -99,7 +93,7 @@ This structure reflects the [JSON-LD Verifiable Claim](https://opencreds.github.
 We canonicalize the JSON, by minifying and sorting hashes by keys:
 
 ```json
-{"@context":"https://schema.trust.exchange/TrustClaim.jsonld","claim":{"@context":"https://schema.trust.exchange/GeneralRating.jsonld","rating":{"@context":"https://schema.org","author":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","bestRating":1,"description":"Elixir programming","ratingValue":"0.99","type":["Rating"],"worstRating":0},"target":"did:59f269a0-0847-4f00-8c4c-26d84e6714c4","type":["GeneralRating"]},"issued":"2017-03-02T22:07:32-08:00","issuer":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","signature":{"http://purl.org/dc/terms/created":{"@value":"2017-03-03T06:07:32Z","type":"http://www.w3.org/2001/XMLSchema#dateTime"},"http://purl.org/dc/terms/creator":{"id":"EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"},"sec:domain":"example.com","signature:Value":"IJ9P6KQFWbYimr1tfWVg+Z6q9mPpz6KJ6jpd65U6BP5tRK1BMeCSXHuhSLOsS9zfwWd4pBOhxM7mEuVMVicq3+I=","type":"sec:EcdsaKoblitzSignature2016"},"type":["Verifiable Claim","Rating"]}
+{"@context":"https://schema.trust.exchange/TrustClaim.jsonld","claim":{"@context":"https://schema.org/","author":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","itemReviewed":"did:59f269a0-0847-4f00-8c4c-26d84e6714c4","keywords":"programming, code, hax0r","reviewRating":{"@context":"https://schema.org/","bestRating":1,"description":"Elixir programming","ratingValue":"0.99","type":"Rating","worstRating":0},"type":"Review"},"issued":"2017-03-04T01:47:40-08:00","issuer":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","signature":{"http://purl.org/dc/terms/created":{"@value":"2017-03-04T09:47:40Z","type":"http://www.w3.org/2001/XMLSchema#dateTime"},"http://purl.org/dc/terms/creator":{"id":"EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"},"sec:domain":"example.com","signature:Value":"H9FPO1Hcv0Gk/rBSiOxPhsxlgQ1EvAE0RJLqQ7pVJf6ABjBFX0ZnLqAitutqQE2RIRUDAk235Ngz7ZcdEQ5SryY=","type":"sec:EcdsaKoblitzSignature2016"},"type":"TrustClaim"}
 ```
 
 Then hash the canonical JSON to get an ID for the claim:
