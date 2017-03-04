@@ -18,6 +18,7 @@ export default class Trust {
         type: 'Review',
         itemReviewed: opts.target,
         author: opts.creator,
+        keywords: opts.tags.split(/\s*,\s*/).join(', ').trim(),
         reviewRating: {
           '@context': 'https://schema.org/',
           type: 'Rating',
