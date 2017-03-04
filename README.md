@@ -9,6 +9,10 @@ Trust Exchange is:
   - Compatible with existing rating schemes (scores, percentages, star ratings, etc)
   - Open Source (MIT licensed)
 
+> We realized that Trust was the currency of the future. Our Trust is the most powerful currency we have, and it is innate to our being. When Trust grows, relationships and exchanges become more fluid and common, from social interactions to economic flow. Most importantly, when we make the landscape of Trust visible, we can see where we are isolated in islands of belief and also where false sources of information originate.”
+>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&mdash; Adam Apollo
+
 ![Trust Network Example](https://cdn.rawgit.com/CoMakery/trust-exchange/fee63549abcaa480ee18da207ebab7c45321de84/doc/images/network.png)
 
 Trust Exchange is a very young codebase, so expect limited functionality, and don't use it in production just yet.
@@ -46,24 +50,25 @@ trust claim \
   --target did:59f269a0-0847-4f00-8c4c-26d84e6714c4 \
   --description 'Elixir programming' \
   --value 0.99 \
+  --tags 'programming, Elixir' \
   --algorithm EcdsaKoblitzSignature2016 \
   --private-key L4mEi7eEdTNNFQEWaa7JhUKAbtHdVvByGAqvpJKC53mfiqunjBjw
 ```
 
-Creates the signed JSON-LD:
+Creates the following signed JSON, in the [JSON-LD Verifiable Claim](https://opencreds.github.io/vc-data-model/#expressing-entity-credentials-in-json) format.
 
 ```json
 {
     "@context": "https://schema.trust.exchange/TrustClaim.jsonld",
     "type": "TrustClaim",
     "issuer": "did:00a65b11-593c-4a46-bf64-8b83f3ef698f",
-    "issued": "2017-03-04T01:47:40-08:00",
+    "issued": "2017-03-04T02:05:07-08:00",
     "claim": {
         "@context": "https://schema.org/",
         "type": "Review",
         "itemReviewed": "did:59f269a0-0847-4f00-8c4c-26d84e6714c4",
         "author": "did:00a65b11-593c-4a46-bf64-8b83f3ef698f",
-        "keywords": "programming, code, hax0r",
+        "keywords": "programming, Elixir",
         "reviewRating": {
             "@context": "https://schema.org/",
             "type": "Rating",
@@ -77,29 +82,27 @@ Creates the signed JSON-LD:
         "type": "sec:EcdsaKoblitzSignature2016",
         "http://purl.org/dc/terms/created": {
             "type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2017-03-04T09:47:40Z"
+            "@value": "2017-03-04T10:05:07Z"
         },
         "http://purl.org/dc/terms/creator": {
             "id": "EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"
         },
         "sec:domain": "example.com",
-        "signature:Value": "H9FPO1Hcv0Gk/rBSiOxPhsxlgQ1EvAE0RJLqQ7pVJf6ABjBFX0ZnLqAitutqQE2RIRUDAk235Ngz7ZcdEQ5SryY="
+        "signature:Value": "IEd/NpCGX7cRe4wc1xh3o4X/y37pY4tOdt8WbYnaGw/Gbr2Oz7GqtkbYE8dxfxjFFYCrISPJGbBNFyaiVBAb6bs="
     }
 }
 ```
 
-This structure reflects the [JSON-LD Verifiable Claim](https://opencreds.github.io/vc-data-model/#expressing-entity-credentials-in-json) structure.
-
 We canonicalize the JSON, by minifying and sorting hashes by keys:
 
 ```json
-{"@context":"https://schema.trust.exchange/TrustClaim.jsonld","claim":{"@context":"https://schema.org/","author":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","itemReviewed":"did:59f269a0-0847-4f00-8c4c-26d84e6714c4","keywords":"programming, code, hax0r","reviewRating":{"@context":"https://schema.org/","bestRating":1,"description":"Elixir programming","ratingValue":"0.99","type":"Rating","worstRating":0},"type":"Review"},"issued":"2017-03-04T01:47:40-08:00","issuer":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","signature":{"http://purl.org/dc/terms/created":{"@value":"2017-03-04T09:47:40Z","type":"http://www.w3.org/2001/XMLSchema#dateTime"},"http://purl.org/dc/terms/creator":{"id":"EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"},"sec:domain":"example.com","signature:Value":"H9FPO1Hcv0Gk/rBSiOxPhsxlgQ1EvAE0RJLqQ7pVJf6ABjBFX0ZnLqAitutqQE2RIRUDAk235Ngz7ZcdEQ5SryY=","type":"sec:EcdsaKoblitzSignature2016"},"type":"TrustClaim"}
+{"@context":"https://schema.trust.exchange/TrustClaim.jsonld","claim":{"@context":"https://schema.org/","author":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","itemReviewed":"did:59f269a0-0847-4f00-8c4c-26d84e6714c4","keywords":"programming, Elixir","reviewRating":{"@context":"https://schema.org/","bestRating":1,"description":"Elixir programming","ratingValue":"0.99","type":"Rating","worstRating":0},"type":"Review"},"issued":"2017-03-04T02:05:07-08:00","issuer":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","signature":{"http://purl.org/dc/terms/created":{"@value":"2017-03-04T10:05:07Z","type":"http://www.w3.org/2001/XMLSchema#dateTime"},"http://purl.org/dc/terms/creator":{"id":"EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"},"sec:domain":"example.com","signature:Value":"IEd/NpCGX7cRe4wc1xh3o4X/y37pY4tOdt8WbYnaGw/Gbr2Oz7GqtkbYE8dxfxjFFYCrISPJGbBNFyaiVBAb6bs=","type":"sec:EcdsaKoblitzSignature2016"},"type":"TrustClaim"}
 ```
 
 Then hash the canonical JSON to get an ID for the claim:
 
 ```
-QmNu7NqYpPd2HSXiFVq2uBXwVvzzhEjbNBQktVfnLZb8KW  # sha2-256 multihash
+QmbVYv7Zih44uJ8MAcpxQ3TZGKUscNoYyK6UKUaut6jK77  # sha2-256 multihash
 ```
 
 ### Retrieve Claims
