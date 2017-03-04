@@ -10,23 +10,21 @@ export default class Trust {
     const claim = {
       '@context': 'https://schema.trust.exchange/TrustClaim.jsonld',
       // id: multihash of json of final signed claim??? add at end.
-      type: ['Verifiable Claim', 'Rating'],
+      type: 'TrustClaim',
       issuer: opts.creator,
       issued: moment().format(),
       claim: {
-        '@context': 'https://schema.trust.exchange/GeneralRating.jsonld',
-        type: ['GeneralRating'],
-        // id: ???
-        target: opts.target,
-        rating: {
-          '@context': 'https://schema.org',
-          type: ['Rating'],
-          // id: ???
-          author: opts.creator,
+        '@context': 'https://schema.org/',
+        type: 'Review',
+        itemReviewed: opts.target,
+        author: opts.creator,
+        reviewRating: {
+          '@context': 'https://schema.org/',
+          type: 'Rating',
           bestRating: 1,
           worstRating: 0,
           ratingValue: opts.value,
-          description: opts.description,
+          description: opts.description
         }
       }
     }
