@@ -107,31 +107,11 @@ QmbVYv7Zih44uJ8MAcpxQ3TZGKUscNoYyK6UKUaut6jK77  # sha2-256 multihash
 
 ### Retrieve Claims
 
-***NOTE: claim retrieval/search is not yet implemented!***
+Retrieve and analyze a collection of ratings.
 
-Below are API sketches; please submit any
+***NOTE: not yet implemented!***
+Below is an API sketch; please submit any
 comments or requests as Github issues.
-
-#### `get`: retrieve a collection of ratings
-
-```
-trust get --help
-
-Usage: trust-get [options]
-
-  Options:
-
-    -h, --help           output usage information
-    --perspective <DID>  Perspective (identity) through which trust network is seen
-    --creator <creator>  DID or URL of claim creator
-    --target <target>    DID or URI of claim target
-    --tags <tag1, tag2>  Filter by tags
-    --depth <levels>     Crawls trust ratings to specified depth
-    --min-value <value>  Min trust rating 0..1
-    --max-value <value>  Max trust rating 0..1
-```
-
-#### `map`: retrieve and analyze a collection of ratings
 
 ```
 trust map --help
