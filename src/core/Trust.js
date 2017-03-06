@@ -49,9 +49,10 @@ export default class Trust {
       d('\n\nmultihash:')
       d(multihash(json))
       run('mkdir -p claims')
-      fs.writeFileSync('claims/xyz', canonicalJson(result))
+      fs.writeFileSync('claims/xyz', json)
       const id = run('ipfs add -q claims/xyz').toString().trim()
       d('open https://ipfs.io/ipfs/' + id)
+
       return
     }).catch((error) => {
       console.error(error.stack)
