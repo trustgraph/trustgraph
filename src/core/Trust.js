@@ -61,5 +61,6 @@ export default class Trust {
   }
 
   get = () => d('TODO: implement this')
+  map = () => d('TODO: implement this')
 
 }
