@@ -52,12 +52,21 @@ export default class Trust {
       fs.writeFileSync('claims/xyz', json)
       const id = run('ipfs add -q claims/xyz').toString().trim()
       d('open https://ipfs.io/ipfs/' + id)
-
+      holochainCommit(json)
       return
     }).catch((error) => {
       console.error(error.stack)
       process.exit(1)
     })
+  }
+
+  holochainCommit = () => {
+    app = express()
+    http = require('http').Server(app)
+    io = require('socket.io')(http)
+
+    ioClient = require 'socket.io-client'
+
   }
 
   get = () => d('TODO: implement this')
