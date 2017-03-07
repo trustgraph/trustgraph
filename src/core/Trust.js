@@ -64,13 +64,13 @@ export default class Trust {
   }
 
   holochainCommit = (json) => {
-    return axios.post(`http://localhost:3141/fn/trustAtoms/claim`, {
+    return axios.post(`http://localhost:3141/fn/teh_js/claim`, {
       atom: json
     })
   }
 
   get = (opts) => {
-    return axios.post(`http://localhost:3141/fn/trustAtoms/get`, {
+    return axios.post(`http://localhost:3141/fn/teh_js/get`, {
       opts: opts
     })
   }
