@@ -33,9 +33,7 @@
     "jsonld-signatures": "github:CoMakery/jsonld-signatures#latest-jsonld-lib",
     "lightsaber": "^0.6.8",
     "lodash": "^4.17.4",
-    "moment": "^2.17.1",
-    "socket.io": "^1.7.3",
-    "socket.io-client": "^1.7.3"
+    "moment": "^2.17.1"
   },
   "devDependencies": {
     "babel-core": "6.23.1",
