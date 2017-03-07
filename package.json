@@ -27,7 +27,9 @@
     "trust": "bin/trust"
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "bitcore-lib": "^0.13.19",
+    "bluebird": "^3.5.0",
     "commander": "^2.9.0",
     "json-stable-stringify": "^1.0.1",
     "jsonld-signatures": "github:CoMakery/jsonld-signatures#latest-jsonld-lib",
