@@ -132,6 +132,14 @@ Usage: trust-map [options]
     --falloff            Trust level relative to depth, eg: [1, 0.5, 0.33]
 ```
 
+For example:
+
+```
+trust map \
+  --target did:59f269a0-0847-4f00-8c4c-26d84e6714c4 \
+  --tags 'programming, Elixir' \
+```
+
 ## Project History
 
 The original vision for Trust Exchange was landed and anchored in 2006 by
