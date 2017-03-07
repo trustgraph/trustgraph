@@ -4,11 +4,15 @@ const jsonldSignatures = require('jsonld-signatures')
 import bitcore from 'bitcore-lib'
 import canonicalJson from 'json-stable-stringify'
 import moment from 'moment'
+import {merge} from 'lodash'
 import axios from 'axios'
 import Promise from 'bluebird'
 
 export default class Trust {
   claim = (opts) => {
+    opts.tags = (opts.tags || '').trim().split(/\s*,\s*/)
+    opts.value = opts.value ? Number(opts.value) : null
+
     const claim = {
       '@context': 'https://schema.trust.exchange/TrustClaim.jsonld',
       // id: multihash of json of final signed claim??? add at end.
@@ -20,7 +24,7 @@ export default class Trust {
         type: 'Review',
         itemReviewed: opts.target,
         author: opts.creator,
-        keywords: opts.tags.split(/\s*,\s*/).join(', ').trim(),
+        keywords: opts.tags.join(', '),
         reviewRating: {
           '@context': 'https://schema.org/',
           type: 'Rating',
@@ -55,20 +59,19 @@ export default class Trust {
     //   const id = run('ipfs add -q claims/xyz').toString().trim()
     //   d('open https://ipfs.io/ipfs/' + id)
 
-    const json = '{"@context":"https://schema.trust.exchange/TrustClaim.jsonld","claim":{"@context":"https://schema.org/","author":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","itemReviewed":"did:59f269a0-0847-4f00-8c4c-26d84e6714c4","keywords":"programming, Elixir","reviewRating":{"@context":"https://schema.org/","bestRating":1,"description":"Elixir programming","ratingValue":"0.99","type":"Rating","worstRating":0},"type":"Review"},"issued":"2017-03-04T02:05:07-08:00","issuer":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","signature":{"http://purl.org/dc/terms/created":{"@value":"2017-03-04T10:05:07Z","type":"http://www.w3.org/2001/XMLSchema#dateTime"},"http://purl.org/dc/terms/creator":{"id":"EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"},"sec:domain":"example.com","signature:Value":"IEd/NpCGX7cRe4wc1xh3o4X/y37pY4tOdt8WbYnaGw/Gbr2Oz7GqtkbYE8dxfxjFFYCrISPJGbBNFyaiVBAb6bs=","type":"sec:EcdsaKoblitzSignature2016"},"type":"TrustClaim"}'
+    const result = JSON.parse('{"@context":"https://schema.trust.exchange/TrustClaim.jsonld","claim":{"@context":"https://schema.org/","author":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","itemReviewed":"did:59f269a0-0847-4f00-8c4c-26d84e6714c4","keywords":"programming, Elixir","reviewRating":{"@context":"https://schema.org/","bestRating":1,"description":"Elixir programming","ratingValue":"0.99","type":"Rating","worstRating":0},"type":"Review"},"issued":"2017-03-04T02:05:07-08:00","issuer":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","signature":{"http://purl.org/dc/terms/created":{"@value":"2017-03-04T10:05:07Z","type":"http://www.w3.org/2001/XMLSchema#dateTime"},"http://purl.org/dc/terms/creator":{"id":"EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"},"sec:domain":"example.com","signature:Value":"IEd/NpCGX7cRe4wc1xh3o4X/y37pY4tOdt8WbYnaGw/Gbr2Oz7GqtkbYE8dxfxjFFYCrISPJGbBNFyaiVBAb6bs=","type":"sec:EcdsaKoblitzSignature2016"},"type":"TrustClaim"}')
     Promise.try(() => {
 
-      return this.holochainCommit(json)
+      return this.holochainCommit(result, opts)
     }).catch((error) => {
       console.error(error.stack)
       process.exit(1)
     })
   }
 
-  holochainCommit = (json) => {
-    return axios.post(`http://localhost:3141/fn/teh_js/claim`, {
-      atom: json
-    })
+  holochainCommit = (result, opts) => {
+    const params = merge(opts, {atom: result})
+    return axios.post(`http://localhost:3141/fn/teh_js/claim`, params)
   }
 
   get = (opts) => {
