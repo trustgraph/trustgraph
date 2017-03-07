@@ -4,6 +4,8 @@ const jsonldSignatures = require('jsonld-signatures')
 import bitcore from 'bitcore-lib'
 import canonicalJson from 'json-stable-stringify'
 import moment from 'moment'
+import axios from 'axios'
+// import Promise from 'bluebird'
 
 export default class Trust {
   claim = (opts) => {
@@ -52,24 +54,27 @@ export default class Trust {
       fs.writeFileSync('claims/xyz', json)
       const id = run('ipfs add -q claims/xyz').toString().trim()
       d('open https://ipfs.io/ipfs/' + id)
-      holochainCommit(json)
-      return
+    // const json = claim
+    // Promise.try(() => {
+      return this.holochainCommit(json)
     }).catch((error) => {
       console.error(error.stack)
       process.exit(1)
     })
   }
 
-  holochainCommit = () => {
-    app = express()
-    http = require('http').Server(app)
-    io = require('socket.io')(http)
-
-    ioClient = require 'socket.io-client'
-
+  holochainCommit = (json) => {
+    return axios.post(`http://localhost:3141/fn/trustAtoms/claim`, {
+      atom: json
+    })
   }
 
-  get = () => d('TODO: implement this')
+  get = (opts) => {
+    return axios.post(`http://localhost:3141/fn/trustAtoms/get`, {
+      opts: opts
+    })
+  }
+
   map = () => d('TODO: implement this')
 
 }
