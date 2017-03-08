@@ -144,6 +144,8 @@ trust map \
 
 ***Warning: This is an early work in Progress!***
 
+First, [install holochain](https://github.com/metacurrency/holochain/blob/master/README.md#installation).
+
 # in one terminal:
 git clone git@github.com:CoMakery/teh.git
 cd teh
