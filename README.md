@@ -146,6 +146,7 @@ trust map \
 
 First, [install holochain](https://github.com/metacurrency/holochain/blob/master/README.md#installation).
 
+```sh
 # in one terminal:
 git clone git@github.com:CoMakery/teh.git
 git branch dev
@@ -158,6 +159,7 @@ hc --debug --verbose serve teh
 git clone git@github.com:CoMakery/trust-exchange.git
 cd trust-exchange
 git checkout holochain
+
 bin/trust claim \
   --creator did:00a65b11-593c-4a46-bf64-8b83f3ef698f \
   --target did:59f269a0-0847-4f00-8c4c-26d84e6714c4 \
@@ -168,6 +170,7 @@ bin/trust claim \
   --private-key L4mEi7eEdTNNFQEWaa7JhUKAbtHdVvByGAqvpJKC53mfiqunjBjw
 
 bin/trust get   --target did:59f269a0-0847-4f00-8c4c-26d84e6714c4
+```
 
 ## Project History
 
