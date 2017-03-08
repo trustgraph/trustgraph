@@ -75,9 +75,7 @@ export default class Trust {
   }
 
   get = (opts) => {
-    return axios.post(`http://localhost:3141/fn/teh_js/get`, {
-      opts: opts
-    })
+    return axios.post(`http://localhost:3141/fn/teh_js/get`, opts)
   }
 
   map = () => d('TODO: implement this')
