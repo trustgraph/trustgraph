@@ -149,8 +149,8 @@ First, [install holochain](https://github.com/metacurrency/holochain/blob/master
 ```sh
 # in one terminal:
 git clone git@github.com:CoMakery/teh.git
-git branch dev
 cd teh
+git checkout dev
 hc --debug --verbose clone --force . teh
 hc --debug --verbose gen chain teh
 hc --debug --verbose serve teh
