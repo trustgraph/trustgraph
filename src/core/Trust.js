@@ -78,13 +78,16 @@ export default class Trust {
   get = (opts) => {
     let params = this.cleanOpts(opts)
     axios.post(`http://localhost:3141/fn/teh_js/get`, params)
-    .then((response) => {
-      d(response.data)
+    .then((result) => {
+      d("result:", result.data)
+    })
+    .catch((error) => {
+      d("error:", error)
     })
   }
 
   cleanOpts = (opts) => {
-    let params = omitBy(opts, (v,k) => type(k) === 'string' && startsWith(k, '_'))
+    let params = omitBy(opts, (v, k) => type(k) === 'string' && startsWith(k, '_'))
     params = omit(params, ['args', 'commands', 'options', 'rawArgs'])
     return params
   }
