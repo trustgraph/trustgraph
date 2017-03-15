@@ -1,10 +1,10 @@
-import {d, multihash, run} from 'lightsaber'
+import {d, multihash, run, type} from 'lightsaber'
 import fs from 'fs'
 const jsonldSignatures = require('jsonld-signatures')
 import bitcore from 'bitcore-lib'
 import canonicalJson from 'json-stable-stringify'
 import moment from 'moment'
-import {merge} from 'lodash'
+import {merge, omit, omitBy, startsWith} from 'lodash'
 import axios from 'axios'
 import Promise from 'bluebird'
 
@@ -70,12 +70,23 @@ export default class Trust {
   }
 
   holochainCommit = (result, opts) => {
-    const params = merge(opts, {atom: result})
+    let params = this.cleanOpts(opts)
+    params = merge(params, {atom: result})
     return axios.post(`http://localhost:3141/fn/teh_js/claim`, params)
   }
 
   get = (opts) => {
-    return axios.post(`http://localhost:3141/fn/teh_js/get`, opts)
+    let params = this.cleanOpts(opts)
+    axios.post(`http://localhost:3141/fn/teh_js/get`, params)
+    .then((response) => {
+      d(response.data)
+    })
+  }
+
+  cleanOpts = (opts) => {
+    let params = omitBy(opts, (v,k) => type(k) === 'string' && startsWith(k, '_'))
+    params = omit(params, ['args', 'commands', 'options', 'rawArgs'])
+    return params
   }
 
   map = () => d('TODO: implement this')
