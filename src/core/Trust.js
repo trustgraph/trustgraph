@@ -72,12 +72,13 @@ export default class Trust {
   holochainCommit = (result, opts) => {
     let params = this.cleanOpts(opts)
     params = merge(params, {atom: result})
-    return axios.post(`http://localhost:3141/fn/teh_js/claim`, params)
+    d(params)
+    return axios.post(`http://localhost:3141/fn/trustClaim/claim`, params)
   }
 
   get = (opts) => {
     let params = this.cleanOpts(opts)
-    axios.post(`http://localhost:3141/fn/teh_js/get`, params)
+    axios.post(`http://localhost:3141/fn/trustClaim/get`, params)
     .then((result) => {
       d("result:", result.data)
     })
