@@ -33,30 +33,11 @@ export default class Trust {
     d('\ninput:')
     d(JSON.stringify(claim, null, 4))
 
-    let result
-    jsonldSignatures.promises.sign(claim, {
+    return jsonldSignatures.promises.sign(claim, {
       privateKeyWif: opts.privateKey,
       algorithm: 'EcdsaKoblitzSignature2016',
       domain: 'example.com',
       creator: 'EcdsaKoblitz-public-key:' + new bitcore.PrivateKey(opts.privateKey).toPublicKey()
-    }).then((_result) => {
-      result = _result
-      d('\n\nsigned json:')
-      d(result)
-      const json = canonicalJson(result)
-      d('\n\ncanonical json to timestamp:')
-      d(json)
-      d('\n\nmultihash:')
-      d(multihash(json))
-      run('mkdir -p claims')
-      fs.writeFileSync('claims/xyz', json)
-      const id = run('ipfs add -q claims/xyz').toString().trim()
-      d('open https://ipfs.io/ipfs/' + id)
-
-      return
-    }).catch((error) => {
-      console.error(error.stack)
-      process.exit(1)
     })
   }
 

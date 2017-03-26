@@ -1,6 +1,6 @@
 {
-  "name": "trust-exchange",
-  "version": "0.2.0-dev",
+  "name": "js-trust-exchange-core",
+  "version": "0.3.0",
   "private": false,
   "license": "MIT",
   "author": "Harlan T Wood (https://github.com/harlantwood)",
@@ -22,13 +22,12 @@
     "lint:ci": "eslint --ignore-pattern '!.eslintrc.js' .eslintrc.js test src util 'bin/*'",
     "readme": "node -r babel-register util/updateReadme.js"
   },
-  "main": "src/index.coffee",
+  "main": "src/index.js",
   "bin": {
     "trust": "bin/trust"
   },
   "dependencies": {
     "bitcore-lib": "^0.13.19",
-    "commander": "^2.9.0",
     "json-stable-stringify": "^1.0.1",
     "jsonld-signatures": "github:CoMakery/jsonld-signatures#latest-jsonld-lib",
     "lightsaber": "^0.6.8",

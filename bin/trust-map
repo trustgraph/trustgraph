@@ -1,5 +1,0 @@
-#!/usr/bin/env node
-
-require('babel-register')
-const actions = require('../src/cli/actions.js')
-actions.exec('map')
