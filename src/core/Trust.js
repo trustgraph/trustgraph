@@ -1,6 +1,10 @@
 import {d, multihash, run} from 'lightsaber'
+import {merge} from 'lodash'
 import fs from 'fs'
+import axios from 'axios'
+let jsonld = require('jsonld')
 let jsonldSignatures = require('jsonld-signatures')
+jsonldSignatures.use('jsonld', jsonld)
 import bitcore from 'bitcore-lib'
 import canonicalJson from 'json-stable-stringify'
 import moment from 'moment'
@@ -30,21 +34,23 @@ export default class Trust {
       }
     }
 
-    d('\ninput:')
-    d(JSON.stringify(claim, null, 4))
+    // d('\ninput:')
+    // d(JSON.stringify(claim, null, 4))
 
-    return jsonldSignatures.promises.sign(claim, {
-      privateKeyWif: opts.privateKey,
-      algorithm: 'EcdsaKoblitzSignature2016',
-      domain: 'example.com',
-      creator: 'EcdsaKoblitz-public-key:' + new bitcore.PrivateKey(opts.privateKey).toPublicKey()
-    })
+    return Promise.resolve(claim)
+
+    // return jsonldSignatures.promises.sign(claim, {
+    //   privateKeyWif: opts.privateKey,
+    //   algorithm: 'EcdsaKoblitzSignature2016',
+    //   domain: 'example.com',
+    //   creator: 'EcdsaKoblitz-public-key:' + new bitcore.PrivateKey(opts.privateKey).toPublicKey()
+    // })
   }
 
-  put = (atom, opts) => {
-    if (opts.storage === 'holochain') {
+  put = (atom, params) => {
+    if (params.storage === 'holochain') {
       let params = merge(params, { atom })
-      d(params)
+      d({params})
       return axios.post(`http://localhost:3141/fn/trustClaim/claim`, params)
     } else {
       throw new Error('unknown opts.storage "' + opts.storage + '"')
