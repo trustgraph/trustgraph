@@ -1,6 +1,6 @@
 import {d, multihash, run} from 'lightsaber'
 import fs from 'fs'
-const jsonldSignatures = require('jsonld-signatures')
+let jsonldSignatures = require('jsonld-signatures')
 import bitcore from 'bitcore-lib'
 import canonicalJson from 'json-stable-stringify'
 import moment from 'moment'
@@ -40,6 +40,17 @@ export default class Trust {
       creator: 'EcdsaKoblitz-public-key:' + new bitcore.PrivateKey(opts.privateKey).toPublicKey()
     })
   }
+
+  put = (atom, opts) => {
+    if (opts.storage === 'holochain') {
+      let params = merge(params, { atom })
+      d(params)
+      return axios.post(`http://localhost:3141/fn/trustClaim/claim`, params)
+    } else {
+      throw new Error('unknown opts.storage "' + opts.storage + '"')
+    }
+  }
+
 
   get = () => d('TODO: implement this')
   map = () => d('TODO: implement this')
