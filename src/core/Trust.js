@@ -47,11 +47,11 @@ export default class Trust {
     // })
   }
 
-  put = (atom, params) => {
-    if (params.storage === 'holochain') {
-      let params = merge(params, { atom })
-      d({params})
-      return axios.post(`http://localhost:3141/fn/trustClaim/claim`, params)
+  put = (params, opts = {}) => {
+    if (opts.storage === 'holochain') {
+      opts.url = opts.url || `http://localhost:3141/fn/trustClaim/claim`
+      d(params, opts)
+      return axios.post(opts.url, params)
     } else {
       throw new Error('unknown opts.storage "' + opts.storage + '"')
     }
