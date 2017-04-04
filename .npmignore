@@ -1,8 +1,0 @@
-/.pairs
-
-/.env
-/.env.*
-/node_modules/
-/tmp/
-.DS_Store
-npm-debug.log
