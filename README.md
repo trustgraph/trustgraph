@@ -1,6 +1,6 @@
-# ŦRUSŦ ΞXCHANGΞ
+# ŦRUSŦ GRΔPH
 
-Trust Exchange is:
+Trust Graph is:
   - An open protocol
   - A toolkit for building and reading distributed trust graphs
   - An ambitious plan to create interoperability between existing and future trust networks
@@ -11,24 +11,25 @@ Trust Exchange is:
 >
 > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&mdash; Adam Apollo
 
-![Trust Network Example](https://cdn.rawgit.com/CoMakery/trust-exchange/fee63549abcaa480ee18da207ebab7c45321de84/doc/images/network.png)
+![Trust Network Example](https://cdn.rawgit.com/trustgraph/trustgraph/fee63549abcaa480ee18da207ebab7c45321de84/doc/images/network.png)
 
 ## Code
 
-> Trust Exchange is a very young codebase, so expect limited functionality, and don't use it in production just yet.
+> Trust Graph is a very young codebase, so expect limited functionality, and don't use it in production just yet.
 
-Trust Exchange codebases:
+Trust Graph codebases:
 
-- [JS core library](https://github.com/trust-exchange/js-trust-exchange-core)
-- [JS frontend react demo](https://github.com/trust-exchange/trust-exchange-demo-basic)
-- [Node JS server](https://github.com/trust-exchange/trust-exchange-server)
-- [Node JS CLI](https://github.com/trust-exchange/js-trust-exchange-cli)
-- [JSON-LD Schemas](https://github.com/trust-exchange/trust-exchange-schema)
-- [Holochain integration](https://github.com/trust-exchange/trust-exchange-holochain)
+- [JS core library](https://github.com/trustgraph/js-trustgraph-core)
+- [JS frontend react demo](https://github.com/trustgraph/js-trustgraph-demo-basic)
+- [Node JS server](https://github.com/trustgraph/js-trustgraph-server)
+- [Node JS CLI](https://github.com/trustgraph/js-trustgraph-cli)
+- [JSON-LD Schemas](https://github.com/trustgraph/trustgraph-schema)
+- [Holochain integration](https://github.com/trustgraph/trustgraph-holochain)
 
 ## Project History
 
-The original vision for Trust Exchange was landed and anchored in 2006 by
+The vision for Trust Graph (originally named Trust Exchange)
+was landed and anchored in 2006 by
 [Harlan T Wood](https://github.com/harlantwood),
 [Adam Apollo](http://www.adamapollo.com/),
 and [Jack Senechal](https://github.com/jacksenechal),
@@ -53,3 +54,5 @@ Portable Reputation Toolkit
 [technical implementation](https://github.com/WebOfTrustInfo/portable-reputation-toolkit),
 the latter of which was then folded back into a reboot of this codebase
 in early 2017, notably centered around JSON-LD signed claims.
+
+In April of 2017, Trust Exchange was renamed to Trust Graph.
