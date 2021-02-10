@@ -42,7 +42,7 @@ Here we address the technical components implied by the features listed above, a
 Trust Graph aims for maximum extensibility and ecosystem compatibility:
 
 1. Pluggable datastores: the reference implementation currently uses a graph database and IPFS, and is designed to support other storage backends as well
-1. Data architecture supports interoperability with [JSON-LD](http://json-ld.org) [Verifiable Claims](https://opencreds.github.io/vc-data-model/#expressing-entity-credentials-in-json), RDF, and [IETF Reputons](https://tools.ietf.org/html/rfc7071), among others
+1. Data architecture supports interoperability with [JSON-LD](http://json-ld.org) [Verifiable Claims](https://www.w3.org/TR/verifiable-claims-use-cases/), RDF, and [IETF Reputons](https://tools.ietf.org/html/rfc7071), among others
 1. Open architecture for multiple cryptographic hashing, signing, and encryption  algorithms
 
 ### Protocol: Trust Atoms
