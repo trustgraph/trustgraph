@@ -1,11 +1,12 @@
 # ŦRUSŦ GRΔPH
 
 Trust Graph is:
-  - An open protocol
-  - A toolkit for building and reading distributed trust graphs
-  - An ambitious plan to create interoperability between existing and future trust networks
-  - Compatible with existing rating schemes (scores, percentages, star ratings, etc)
-  - Open Source (Apache 2 licensed)
+
+- An open protocol
+- A toolkit for building and reading distributed trust graphs
+- An ambitious plan to create interoperability between existing and future trust networks
+- Compatible with existing rating schemes (scores, percentages, star ratings, etc)
+- Open Source (Apache 2 licensed)
 
 ![Trust Network Example](https://cdn.rawgit.com/trustgraph/trustgraph/fee63549abcaa480ee18da207ebab7c45321de84/doc/images/network.png)
 
@@ -13,11 +14,11 @@ Trust Graph is a very young codebase, so expect limited functionality, and don't
 
 ## Why Trust Graph?
 
-In 1963 J.C.R. Licklider, director of the Information Processing Techniques Office at The Pentagon's Advanced Research Projects Agency, proposed an "[Intergalactic Computer Network](https://en.wikipedia.org/wiki/Intergalactic_Computer_Network)", which he envisioned as an electronic commons open to all.  This bold vision planted the seeds for ARPANET, and eventually for the network of networks known as the Internet.  Today we need an equally bold vision -- an open interoperable commons for the permanent storage, sharing, and searching of what is perhaps the most important information of our time: Trust.
+In 1963 J.C.R. Licklider, director of the Information Processing Techniques Office at The Pentagon's Advanced Research Projects Agency, proposed an "[Intergalactic Computer Network](https://en.wikipedia.org/wiki/Intergalactic_Computer_Network)", which he envisioned as an electronic commons open to all. This bold vision planted the seeds for ARPANET, and eventually for the network of networks known as the Internet. Today we need an equally bold vision -- an open interoperable commons for the permanent storage, sharing, and searching of what is perhaps the most important information of our time: Trust.
 
 ## Features
 
-What is meant mean by a "Permanent Open Trust Network"?  Here we refer to a permanent digital archive for trust, reputation, and ratings information, which has the characteristics:
+What is meant mean by a "Permanent Open Trust Network"? Here we refer to a permanent digital archive for trust, reputation, and ratings information, which has the characteristics:
 
 1. Anyone can contribute _claims_ (collectively representing any type of trust or reputation data: ratings, vouches, "likes", reviews, etc)
 
@@ -31,7 +32,7 @@ What is meant mean by a "Permanent Open Trust Network"?  Here we refer to a perm
 
 1. A _trust network_ thereby emerges for each claimant, which is actually a cascading network of the trust networks they are most closely connected to
 
-1. Information within such a trust network is easily discoverable and  searchable
+1. Information within such a trust network is easily discoverable and searchable
 
 ## Trust Graph Architecture
 
@@ -43,13 +44,13 @@ Trust Graph aims for maximum extensibility and ecosystem compatibility:
 
 1. Pluggable datastores: the reference implementation currently uses a graph database and IPFS, and is designed to support other storage backends as well
 1. Data architecture supports interoperability with [JSON-LD](http://json-ld.org) [Verifiable Claims](https://www.w3.org/TR/verifiable-claims-use-cases/), RDF, and [IETF Reputons](https://tools.ietf.org/html/rfc7071), among others
-1. Open architecture for multiple cryptographic hashing, signing, and encryption  algorithms
+1. Open architecture for multiple cryptographic hashing, signing, and encryption algorithms
 
 ### Protocol: Trust Atoms
 
 Trust Graph is composed entirely of `Trust Atoms`, an intentionally open format which can naturally represent ratings and "vouches", as well as substantially more esoteric formats.
 
-A `Trust Atom` is a map of keys and values.  The only required keys are `source` and `target`; all others are optional.  Implementors may add other fields as needed.
+A `Trust Atom` is a map of keys and values. The only required keys are `source` and `target`; all others are optional. Implementors may add other fields as needed.
 
 ```
 {
@@ -62,14 +63,14 @@ A `Trust Atom` is a map of keys and values.  The only required keys are `source`
 ```
 
 - `source` is the hash of the public key of the person or organization doing the rating.
-- `target` is the person, organization, or entity being rated.  This may be:
+- `target` is the person, organization, or entity being rated. This may be:
   - The hash of the public key if available
   - A URL referring to the target
   - Another unique identifier of the target
 - `value` is a number which must be in the range 0..1 -- this may be the normalized form of:
-    - a boolean (eg “upvote” or “like”)
-    - rating in the form of 1-5 stars
-    - a percentage score
+  - a boolean (eg “upvote” or “like”)
+  - rating in the form of 1-5 stars
+  - a percentage score
 - `content` is any semantic information related to the rating, which may be a description, tags, or any other text
 
 A simple example:
@@ -80,7 +81,7 @@ A simple example:
   "target": "http://ipfs.io/",
   "value": 0.99,
   "content": "content addressable graph infrastructure",
-  "timestamp": "2015-08-11T22:32:23.207Z",
+  "timestamp": "2015-08-11T22:32:23.207Z"
 }
 ```
 
@@ -124,44 +125,44 @@ Creates the following signed JSON, in the [JSON-LD Verifiable Claim](https://ope
 
 ```json
 {
-    "@context": "https://schema.trustgraph.io/TrustClaim.jsonld",
-    "type": "TrustClaim",
-    "issuer": "did:00a65b11-593c-4a46-bf64-8b83f3ef698f",
-    "issued": "2017-03-04T02:05:07-08:00",
-    "claim": {
-        "@context": "https://schema.org/",
-        "type": "Review",
-        "itemReviewed": "did:59f269a0-0847-4f00-8c4c-26d84e6714c4",
-        "author": "did:00a65b11-593c-4a46-bf64-8b83f3ef698f",
-        "keywords": "programming, Elixir",
-        "reviewRating": {
-            "@context": "https://schema.org/",
-            "type": "Rating",
-            "bestRating": 1,
-            "worstRating": 0,
-            "ratingValue": "0.99",
-            "description": "Elixir programming"
-        }
-    },
-    "signature": {
-        "type": "sec:EcdsaKoblitzSignature2016",
-        "http://purl.org/dc/terms/created": {
-            "type": "http://www.w3.org/2001/XMLSchema#dateTime",
-            "@value": "2017-03-04T10:05:07Z"
-        },
-        "http://purl.org/dc/terms/creator": {
-            "id": "EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"
-        },
-        "sec:domain": "example.com",
-        "signature:Value": "IEd/NpCGX7cRe4wc1xh3o4X/y37pY4tOdt8WbYnaGw/Gbr2Oz7GqtkbYE8dxfxjFFYCrISPJGbBNFyaiVBAb6bs="
+  "@context": "https://schema.trustgraph.net/TrustClaim.jsonld",
+  "type": "TrustClaim",
+  "issuer": "did:00a65b11-593c-4a46-bf64-8b83f3ef698f",
+  "issued": "2017-03-04T02:05:07-08:00",
+  "claim": {
+    "@context": "https://schema.org/",
+    "type": "Review",
+    "itemReviewed": "did:59f269a0-0847-4f00-8c4c-26d84e6714c4",
+    "author": "did:00a65b11-593c-4a46-bf64-8b83f3ef698f",
+    "keywords": "programming, Elixir",
+    "reviewRating": {
+      "@context": "https://schema.org/",
+      "type": "Rating",
+      "bestRating": 1,
+      "worstRating": 0,
+      "ratingValue": "0.99",
+      "description": "Elixir programming"
     }
+  },
+  "signature": {
+    "type": "sec:EcdsaKoblitzSignature2016",
+    "http://purl.org/dc/terms/created": {
+      "type": "http://www.w3.org/2001/XMLSchema#dateTime",
+      "@value": "2017-03-04T10:05:07Z"
+    },
+    "http://purl.org/dc/terms/creator": {
+      "id": "EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"
+    },
+    "sec:domain": "example.com",
+    "signature:Value": "IEd/NpCGX7cRe4wc1xh3o4X/y37pY4tOdt8WbYnaGw/Gbr2Oz7GqtkbYE8dxfxjFFYCrISPJGbBNFyaiVBAb6bs="
+  }
 }
 ```
 
-We canonicalize the JSON, by minifying and sorting hashes by keys:
+We canonicalize the JSON, by minifying and sorting maps by keys:
 
-```json
-{"@context":"https://schema.trustgraph.io/TrustClaim.jsonld","claim":{"@context":"https://schema.org/","author":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","itemReviewed":"did:59f269a0-0847-4f00-8c4c-26d84e6714c4","keywords":"programming, Elixir","reviewRating":{"@context":"https://schema.org/","bestRating":1,"description":"Elixir programming","ratingValue":"0.99","type":"Rating","worstRating":0},"type":"Review"},"issued":"2017-03-04T02:05:07-08:00","issuer":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","signature":{"http://purl.org/dc/terms/created":{"@value":"2017-03-04T10:05:07Z","type":"http://www.w3.org/2001/XMLSchema#dateTime"},"http://purl.org/dc/terms/creator":{"id":"EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"},"sec:domain":"example.com","signature:Value":"IEd/NpCGX7cRe4wc1xh3o4X/y37pY4tOdt8WbYnaGw/Gbr2Oz7GqtkbYE8dxfxjFFYCrISPJGbBNFyaiVBAb6bs=","type":"sec:EcdsaKoblitzSignature2016"},"type":"TrustClaim"}
+```
+{"@context":"https://schema.trustgraph.net/TrustClaim.jsonld","claim":{"@context":"https://schema.org/","author":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","itemReviewed":"did:59f269a0-0847-4f00-8c4c-26d84e6714c4","keywords":"programming, Elixir","reviewRating":{"@context":"https://schema.org/","bestRating":1,"description":"Elixir programming","ratingValue":"0.99","type":"Rating","worstRating":0},"type":"Review"},"issued":"2017-03-04T02:05:07-08:00","issuer":"did:00a65b11-593c-4a46-bf64-8b83f3ef698f","signature":{"http://purl.org/dc/terms/created":{"@value":"2017-03-04T10:05:07Z","type":"http://www.w3.org/2001/XMLSchema#dateTime"},"http://purl.org/dc/terms/creator":{"id":"EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"},"sec:domain":"example.com","signature:Value":"IEd/NpCGX7cRe4wc1xh3o4X/y37pY4tOdt8WbYnaGw/Gbr2Oz7GqtkbYE8dxfxjFFYCrISPJGbBNFyaiVBAb6bs=","type":"sec:EcdsaKoblitzSignature2016"},"type":"TrustClaim"}
 ```
 
 Then hash the canonical JSON to get an ID for the claim:
@@ -207,6 +208,6 @@ trust map \
 
 ## Demo
 
-The best live demo that showcases much of our thinking and work to date is the  [Work.nation prototype](https://demo.worknation.io/), built by CoMakery, Cisco, uPort, and The Institute for The Future.  In this demo, your contributions to projects (e.g. Javascript, UX, etc) are verified by project team members. You can search for folks with the experience you need through the contributors you trust and the contributors they trust.
+The best live demo that showcases much of our thinking and work to date is the [Work.nation prototype](https://demo.worknation.io/), built by CoMakery, Cisco, uPort, and The Institute for The Future. In this demo, your contributions to projects (e.g. Javascript, UX, etc) are verified by project team members. You can search for folks with the experience you need through the contributors you trust and the contributors they trust.
 
 Work.nation uses decentralized identity (uPort), decentralized storage of reputation data (IPFS), and blockchain claim notarization (Ethereum). The [technical overview and open source code](https://github.com/worknation/work.nation) are on github.
