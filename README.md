@@ -106,14 +106,15 @@ Would create the following signed JSON, in the [JSON-LD Verifiable Claim](https:
 
 ```json
 {
-  "@context": ["https://w3id.org/security/v1", "http://json-ld.org/contexts/person.jsonld", "https://raw.githubusercontent.com/trustgraph/trustgraph-schema/gh-pages/TrustClaim.jsonld"],   // or maybe just our schema here, which references their schemas?
-  "@type": "VerifiableClaim",
+  "@context": [ "https://www.w3.org/2018/credentials/v1", "https://w3id.org/identity/v1", "https://w3id.org/security/v1" ], 
+  //"https://raw.githubusercontent.com/trustgraph/trustgraph-schema/gh-pages/TrustClaim.jsonld"],   // or maybe just our schema here, which references their schemas?
+  "@type": "VerifiableCredential",
   "issuer": {
     "@type": "DID",
     "@id": "did:key:z6Mko2C7FvL9nNN6Ut1yPcUuEjbJoziDjDmjAJixemPkQBss",
   },
-  "target": {
-    "@type": "@id",
+  "credentialSubject": {
+    "@type": "DID",
     "@id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
   },
   "claim": {
@@ -138,7 +139,6 @@ Would create the following signed JSON, in the [JSON-LD Verifiable Claim](https:
       "@context": "https://w3id.org/security/v1",
       "id": "did:holo:b2B37C890824242Cb9B0FE5614fA2221B79901E",
       "type": "Holochain",
-      
     },
     "created": "2021-11-05T03:12:54Z",
     "proofPurpose": "assertionMethod",
