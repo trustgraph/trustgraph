@@ -106,15 +106,21 @@ Would create the following signed JSON, in the [JSON-LD Verifiable Claim](https:
 
 ```json
 {
-  "@context": "https://raw.githubusercontent.com/trustgraph/trustgraph-schema/gh-pages/TrustClaim.jsonld",
-  "type": "TrustClaim",
-  "issuer": "did:00a65b11-593c-4a46-bf64-8b83f3ef698f",
-  "issued": "2017-03-04T02:05:07-08:00",
+  "@context": ["https://w3id.org/security/v1", "http://json-ld.org/contexts/person.jsonld", "https://raw.githubusercontent.com/trustgraph/trustgraph-schema/gh-pages/TrustClaim.jsonld"],   // or maybe just our schema here, which references their schemas?
+  "@type": "VerifiableClaim",
+  "issuer": {
+    "@type": "DID",
+    "@id": "did:key:z6Mko2C7FvL9nNN6Ut1yPcUuEjbJoziDjDmjAJixemPkQBss",
+  },
+  "target": {
+    "@type": "@id",
+    "@id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+  },
   "claim": {
-    "@context": "https://schema.org/",
+    "@context": "https://schema.org/Claim",
     "type": "Review",
-    "itemReviewed": "did:59f269a0-0847-4f00-8c4c-26d84e6714c4",
-    "author": "did:00a65b11-593c-4a46-bf64-8b83f3ef698f",
+    "itemReviewed": "did:key:z6MkfXP5Jig4jvF1TiPCWgtacXADXt1bWtUaYKRWasU9B2v2",
+    "author": "did:key:z6Mko2C7FvL9nNN6Ut1yPcUuEjbJoziDjDmjAJixemPkQBss",
     "keywords": "programming, Elixir",
     "reviewRating": {
       "@context": "https://schema.org/",
@@ -125,19 +131,21 @@ Would create the following signed JSON, in the [JSON-LD Verifiable Claim](https:
       "description": "Elixir programming"
     }
   },
-  "signature": {
-    "type": "sec:EcdsaKoblitzSignature2016",
-    "http://purl.org/dc/terms/created": {
-      "type": "http://www.w3.org/2001/XMLSchema#dateTime",
-      "@value": "2017-03-04T10:05:07Z"
+  "issued": "2022-03-04T02:05:07-08:00",
+  "proof": {
+    "type": "Ed25519Signature2018",
+    "verificationMethod": {
+      "@context": "https://w3id.org/security/v1",
+      "id": "did:holo:b2B37C890824242Cb9B0FE5614fA2221B79901E",
+      "type": "Holochain",
+      
     },
-    "http://purl.org/dc/terms/creator": {
-      "id": "EcdsaKoblitz-public-key:020d79074ef137d4f338c2e6bef2a49c618109eccf1cd01ccc3286634789baef4b"
-    },
-    "sec:domain": "example.com",
-    "signature:Value": "IEd/NpCGX7cRe4wc1xh3o4X/y37pY4tOdt8WbYnaGw/Gbr2Oz7GqtkbYE8dxfxjFFYCrISPJGbBNFyaiVBAb6bs="
+    "created": "2021-11-05T03:12:54Z",
+    "proofPurpose": "assertionMethod",
+    "jws": "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..dXNHwJ-9iPMRQ4AUcv9j-7LuImTiWAG0sDYbRRDDiyAjOV9CUmjLMKiePpytoAmGNGNTHDlEOsTa4CS3dZ7yBg"
   }
 }
+
 ```
 
 We canonicalize the JSON, by minifying and sorting maps by keys:
