@@ -104,7 +104,7 @@ trust claim \
 
 Would create the following signed JSON, in the [JSON-LD Verifiable Claim](https://opencreds.github.io/vc-data-model/#expressing-entity-credentials-in-json) format.
 
-```json
+```jsonc
 {
   "@context": [ "https://www.w3.org/2018/credentials/v1", "https://w3id.org/identity/v1", "https://w3id.org/security/v1" ], 
   //"https://raw.githubusercontent.com/trustgraph/trustgraph-schema/gh-pages/TrustClaim.jsonld"],   // or maybe just our schema here, which references their schemas?
